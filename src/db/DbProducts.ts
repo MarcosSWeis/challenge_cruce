@@ -1,0 +1,86 @@
+import { CategoriesProduct, QuotaProduct } from "../interfaces/products";
+import { Product } from "../models/Product"
+import { IUser } from "../interfaces/user";
+import { mockProducts } from "../mock/products/mockProducts";
+import { mockUsers } from "../mock/users/mockUsers";
+import { seedInstanceProduct } from "../services/product-service";
+import { seedInstanceUser } from "../services/user-service";
+import { User } from "../models/User";
+
+export class dbProducts {
+    private products: Array<Product> = []
+    private users: Array<User> = []
+
+    constructor(products: Array<Product>, users: Array<User>) {
+        this.products = products;
+        this.users = users;
+    }
+    //------***   GETTERS   ***------//
+
+    //listar todos los productos
+    getAllProducts(): Array<Product> {
+        return this.products
+    }
+    //obtener producto por su id
+    getProductById(id: number): Product | undefined {
+        return this.products.find((product) => product.id === id)
+    }
+    //obtener productos por category
+    getProductsByCategory(category: CategoriesProduct): Array<Product> | undefined {
+        return this.products.filter((product) => product.category === category)
+    }
+    //obtener el id mayor
+    getLastId(): number {
+        let ids: Array<number> = this.products.map((product) => product.id)
+        let mayor: number = ids[0]
+        for (let i = 0; i < ids.length; i++) {
+            if (ids[i] > mayor) {
+                mayor = ids[i]
+            }
+        }
+        return mayor
+    }
+    //filtrar por precio maximo y minimo
+    getFilterPrice(minPrice?: number | undefined, maxPrice?: number | undefined): Array<Product> {
+        let min: number, max: number;
+        min = !minPrice ? 0 : minPrice
+        max = !maxPrice ? Infinity : maxPrice
+        return this.products.filter((product) => product.price.price < max && product.price.price > min)
+    }
+    //filtrar por descuento
+    getFilterDiscount(): Array<Product> | undefined {
+        return this.products.filter((product) => product.price.discount !== 0)
+    }
+    //buscar producto pro nombre
+    getProductoByTitle(search: string): Array<Product> {
+        return this.products.filter((product) => product.title.indexOf(search) != -1)
+    }
+
+    //filtrar producto por cantidad de cuotas
+    getFilterProductByQuota(quotas: QuotaProduct): Array<Product> | undefined {
+        return this.products.filter((product) => product.quotas === quotas)
+    }
+
+
+    //------***   SETTERS   ***------//
+
+    //añadir un producto
+    addProduct(product: Product): void {
+        product.setCreateId(this.getLastId())
+        this.products.push(product)
+    }
+    //borrar un producto
+    deleteProduct(id: number): void {
+        let index = this.products.findIndex((product) => product.id === id)
+        this.products = this.products.splice(index, 1)
+    }
+    /// save method
+    //tipo produsct o user
+    saveDb(objectToSave: Product): void {
+
+    }
+
+}
+
+export const DB: dbProducts = new dbProducts(seedInstanceProduct(mockProducts), seedInstanceUser(mockUsers));
+
