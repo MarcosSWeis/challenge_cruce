@@ -1,6 +1,6 @@
 import { ISearchState } from "./search";
 
 export interface IAppContextProps {
-    search: ISearchState;
-    setSearch: (toSearch: string) => void;
+    searching: ISearchState;
+    setSearching: (toSearch: string) => void;
 }

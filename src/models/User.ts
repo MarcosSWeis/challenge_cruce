@@ -8,7 +8,6 @@ export class User implements IUser {
     lastName: string;
     email: string;
     password: string
-    users: Array<User> = []
     constructor(name: string, lastName: string, email: string, password: string) {
         this.name = name;
         this.lastName = lastName;

@@ -1,8 +1,5 @@
-import { privateDecrypt } from "crypto";
-import React from "react";
-import svg_discount from '../assets/vector_discount.svg'
-import { IProduct } from "../interfaces/products";
-import { Product } from "../models/Product";
+import svg_discount from '../../assets/vector_discount.svg'
+import { Product } from "../../models/Product";
 
 interface CardProps {
     product: Product

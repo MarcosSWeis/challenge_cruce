@@ -3,7 +3,7 @@ import { Product } from "../models/Product";
 
 
 type AppActions =
-    | { type: 'search', payload: string }
+    | { type: 'search', payload: ISearchState }
 
 
 export function appReducer(state: ISearchState, action: AppActions): ISearchState {
@@ -11,7 +11,8 @@ export function appReducer(state: ISearchState, action: AppActions): ISearchStat
         case "search":
             return {
                 ...state,
-                textToSearch: action.payload
+                resultSearch: action.payload.resultSearch,
+                loading: action.payload.loading
 
             }
 

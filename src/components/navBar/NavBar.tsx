@@ -23,6 +23,7 @@ const NavBar: React.FunctionComponent<NavBarProps> = () => {
     const userLogged = null
 
     const menu: IMenu['menu'] = [
+
         {
             text: 'home',
             link: '/'

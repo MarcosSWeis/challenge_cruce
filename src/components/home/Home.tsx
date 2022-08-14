@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { DB } from "../../db/DbProducts";
-import { getRandom } from "../../helpers/helper";
-import { CategoriesProduct, IProduct, QuotaProduct } from "../../interfaces/products";
-import { Funko } from "../../models/Funko";
+import React, { useContext, useEffect, useState } from "react";
+import { AppContext } from "../../context/AppContext";
 import { Product } from "../../models/Product";
-import { User } from "../../models/User";
-import { ENUM_IMAGES_FUNKOS, IMAGES_FUNKOS } from "../../services/importImages";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import ContainerCardHome from "./ContainerCardHome";
+import { DB } from "../../services/createdDB";
 
-import Card from "../CardHome";
 
 interface HomeProps {
 
@@ -30,18 +28,10 @@ const Home: React.FunctionComponent<HomeProps> = () => {
 
     return (
         <>
-            {products.length > 0 ?
-                (
-                    <div className="wrapper">
-                        {products.map((product: Product) => <Card product={product} key={product.id} />)}
-                    </div>
-                ) :
-                (
-                    <h1>NO hay productos</h1>
-                )
-            }
+            {products.length > 0 && <ContainerCardHome products={products} />}
         </>
     );
 }
 
 export default Home;
+

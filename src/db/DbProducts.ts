@@ -1,10 +1,5 @@
 import { CategoriesProduct, QuotaProduct } from "../interfaces/products";
 import { Product } from "../models/Product"
-import { IUser } from "../interfaces/user";
-import { mockProducts } from "../mock/products/mockProducts";
-import { mockUsers } from "../mock/users/mockUsers";
-import { seedInstanceProduct } from "../services/product-service";
-import { seedInstanceUser } from "../services/user-service";
 import { User } from "../models/User";
 
 export class dbProducts {
@@ -82,5 +77,5 @@ export class dbProducts {
 
 }
 
-export const DB: dbProducts = new dbProducts(seedInstanceProduct(mockProducts), seedInstanceUser(mockUsers));
+//export const DB: dbProducts = new dbProducts(seedInstanceProduct(mockProducts), seedInstanceUser(mockUsers));
 

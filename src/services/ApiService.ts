@@ -1,10 +1,4 @@
-import { queries } from '@testing-library/react';
 import axios, { Axios, AxiosResponse } from 'axios'
-import path from 'path';
-import { GetPublic } from '../interfaces/get-public-interface';
-import { IProduct } from '../interfaces/products';
-
-
 
 axios.defaults.baseURL = 'https://fakestoreapi.com'
 
