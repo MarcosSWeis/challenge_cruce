@@ -1,4 +1,5 @@
 import { CategoriesProduct, QuotaProduct } from "../interfaces/products";
+import { Paginate } from "../models/Paginate";
 import { Product } from "../models/Product"
 import { User } from "../models/User";
 
@@ -14,8 +15,20 @@ export class dbProducts {
 
     //listar todos los productos
     getAllProducts(): Array<Product> {
+
         return this.products
     }
+    //retorna un objeto para poder paginar
+    getAllProductsPaginates(limit: number, page: number, arrToPaginate: Array<Product>): Paginate {
+        const offset = limit * page
+        const previousOffset = limit * (page - 1)
+        if (page == 1) {
+            return new Paginate(arrToPaginate.length, limit, page, arrToPaginate.slice(page - 1, limit))
+        } else {
+            return new Paginate(arrToPaginate.length, limit, page, arrToPaginate.slice(previousOffset, offset))
+        }
+    }
+
     //obtener producto por su id
     getProductById(id: number): Product | undefined {
         return this.products.find((product) => product.id === id)

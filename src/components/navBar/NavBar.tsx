@@ -33,8 +33,8 @@ const NavBar: React.FunctionComponent<NavBarProps> = () => {
             link: '/categorias'
         },
         {
-            text: "LOL",
-            link: '/lol'
+            text: "Juguetes",
+            link: '/juguetes'
         },
         {
             text: "CryBabies",

@@ -25,7 +25,7 @@ export enum QuotaProduct {
 
 
 export enum CategoriesProduct {
-    FUNKO = 'FUNKO',
-    JANSPORT = 'JANSPORT',
-    DINOSAURIO = 'DINOSAURIO'
+    FUNKO = 'funkos',
+    JANSPORT = 'jansport',
+    DINOSAURIO = 'dinosaurios'
 }

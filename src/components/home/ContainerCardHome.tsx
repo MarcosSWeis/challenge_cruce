@@ -1,6 +1,6 @@
 import React from "react";
 import { Product } from "../../models/Product";
-import Card from "./CardHome";
+import ProductCard from "./ProductCard";
 
 interface IContainerCardHomeProps {
     products: Array<Product>
@@ -8,7 +8,7 @@ interface IContainerCardHomeProps {
 
 const ContainerCardHome: React.FunctionComponent<IContainerCardHomeProps> = ({ products }) => {
     return (<div className="wrapper">
-        {products.map((product: Product) => <Card product={product} key={product.id} />)}
+        {products.map((product: Product) => <ProductCard product={product} key={product.id} />)}
     </div>);
 }
 

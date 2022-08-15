@@ -1,7 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import NotFound from "../components/notfound/NotFound";
 import PageHome from "../pages/home/PageHome";
 import PageSearch from "../pages/search/PageSearch";
+import ToyRoutes from "./ToyRoutes";
 
 interface PublicRoutesProps {
 
@@ -13,12 +15,9 @@ const PublicRoutes: React.FunctionComponent<PublicRoutesProps> = () => {
             <Routes>
                 <Route path='' element={<PageHome />} />
                 <Route path='search' element={<PageSearch />} />
-                <Route path='novedades/:id' element={<h1></h1>} />
-                <Route path='testimonios' element={<h1></h1>} />
-                <Route path='contacto' element={<h1></h1>} />
-
+                <Route path='juguetes/*' element={<ToyRoutes />} />
+                <Route path='*' element={<NotFound />} />
             </Routes>
-
         </>
     );
 }

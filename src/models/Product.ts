@@ -19,6 +19,7 @@ export class Product implements IProduct {
         this.image = image
         this.quotas = quotas
         this.priceDiscount = this.getPriceDiscount(price.price, price.discount)
+
     }
     //------***   SETTERS   ***------//
     setCreateId(id: number): void {

@@ -19,42 +19,10 @@ navBar {
 }
 
 
-.card div {
-    position: relative !important;
-}
 
 
-.card-body {
-    flex: 0 0;
-}
 
-.card-body img {
-    position: absolute !important;
-    width: 48px;
-    height: 48px;
-    left: 0px;
-    bottom: 0px;
-    border-radius: 6px;
-}
-
-.discount {
-    color: #FFFFFF;
-    font-size: 1rem;
-    transform: rotate(-15deg);
-    left: 0px;
-    padding: 0.8rem;
-    bottom: 0px;
-    position: absolute;
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-}
-
-.btnSearch {
-    border: none;
-    background-color: transparent;
-}
+/* top Marquee  */
 
 .helpTouch {
     position: relative;
@@ -71,6 +39,8 @@ navBar {
     padding-left: 10px;
     padding-right: 20px;
 }
+
+
 
 .marquee {
     height: 25px;
@@ -130,8 +100,50 @@ navBar {
     }
 }
 
+/* Product card */
+.card div {
+    position: relative !important;
+    text-decoration: none;
+}
+
+.card-body {
+    flex: 0 0;
+}
+
+.card-body img {
+    position: absolute !important;
+    width: 48px;
+    height: 48px;
+    left: 0px;
+    bottom: 0px;
+    border-radius: 6px;
+}
+
+.discount {
+    color: #FFFFFF;
+    font-size: 1rem;
+    transform: rotate(-15deg);
+    left: 0px;
+    padding: 0.8rem;
+    bottom: 0px;
+    position: absolute;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.btnSearch {
+    border: none;
+    background-color: transparent;
+}
+
+.container_desc a {
+    text-decoration: none;
+}
 
 .container_desc .category {
+
     font-style: normal;
     font-weight: 800;
     font-size: 16px;
@@ -139,8 +151,9 @@ navBar {
 }
 
 .container_desc .card-title {
+    color: black;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 15px;
 }
 
@@ -213,6 +226,17 @@ navBar {
     margin: auto;
 }
 
+
+/* Navbar Toy */
+#NavBarToy {
+    background-color: #7D5A94;
+
+}
+
+#NavBarToy li a {
+    text-decoration: none !important;
+    color: white;
+}
 
 
 @media screen and (min-width: 720px) {
