@@ -11,7 +11,7 @@ export interface IProduct {
     title: string,
     price: Price,
     description: string,
-    category: CategoriesProduct,
+    category: CategoryProduct,
     image: any,
     quotas: QuotaProduct
 
@@ -22,10 +22,16 @@ export enum QuotaProduct {
     nueve = 9,
     doce = 12
 }
+export interface CategoryProduct {
+    toy?: Toy
+    school?: School
+}
 
 
-export enum CategoriesProduct {
-    FUNKO = 'funkos',
-    JANSPORT = 'jansport',
-    DINOSAURIO = 'dinosaurios'
+export enum Toy {
+    FUNKO = 'Funko',
+    DINOSAURIO = 'Dinosaurio'
+}
+export enum School {
+    JANSPORT = 'Jansport'
 }

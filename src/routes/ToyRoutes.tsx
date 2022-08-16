@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet, Route, Routes } from "react-router-dom"
+import PageDinosaur from "../pages/dino/PageDinosaur";
 import PageFunko from "../pages/funko/PageFunko";
 import PageToy from "../pages/Toy/PageToy";
 
@@ -12,9 +13,9 @@ const ToyRoutes: React.FunctionComponent<ToyRoutesProps> = () => {
 
         <Routes>
             <Route path='/' element={<PageToy />}>
-                <Route path='funkos/:page' element={<PageFunko />} />
-                <Route path='dinosaurios/:page' element={<h1>dinosaurios</h1>} />
-                <Route path='jansports/:page' element={<h1>jansport</h1>} />
+                <Route path='funko/:page' element={<PageFunko />} />
+                <Route path='dinosaurio/:page' element={<PageDinosaur />} />
+                <Route path='jansport/:page' element={<h1>jansport</h1>} />
             </Route>
         </Routes>
     );

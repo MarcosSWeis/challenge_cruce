@@ -32,7 +32,7 @@ const Paginator: React.FunctionComponent<PaginatorProps> = ({ pageCount, current
             li.push(
                 <li
                     key={`page${i + 1}`}
-                    className={i + 1 === page ? "page-item active" : "page-item"}
+                    className={i + 1 === page ? "page-item  pageActive" : "page-item"}
                 >
                     <Link className="page-link" to={`${currentLoc}${i + 1}`}>
                         {i + 1}
@@ -59,9 +59,9 @@ const Paginator: React.FunctionComponent<PaginatorProps> = ({ pageCount, current
     return (
         <>
             {pageCount > 0 && (
-                <div className={`  overflow-hidden  d-flex justify-content-${justify}`} style={{ width: '100%', height: 'fit-content' }}>
-                    <nav className="m-0 p-0" aria-label="Page navigation example" >
-                        <ul className="pagination pagination-lg d-flex flex-wrap m-0 p-0 " >
+                <div className={`overflow-hidden  d-flex justify-content-${justify}`} style={{ width: '100%', height: 'fit-content' }}>
+                    <nav className="mt-5 p-0 m-auto"  >
+                        <ul className="pagination pagination-lg d-flex flex-wrap m-0 p-0 " id="paginator">
                             {renderPages()}
                         </ul>
                     </nav>

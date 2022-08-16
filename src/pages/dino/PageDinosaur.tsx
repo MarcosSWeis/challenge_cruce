@@ -2,40 +2,40 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ContainerCardHome from "../../components/home/ContainerCardHome";
 import Paginator from "../../components/Paginator";
-import { CategoryProduct, Toy } from "../../interfaces/products";
+import { Toy } from "../../interfaces/products";
 import { Paginate } from "../../models/Paginate";
 import { Product } from "../../models/Product";
 import { DB } from "../../services/createdDB";
 
-interface PageFunkoProps {
+interface DinosaurProps {
 
 }
 
-const PageFunko: React.FunctionComponent<PageFunkoProps> = () => {
+const PageDinosaur: React.FunctionComponent<DinosaurProps> = () => {
+
     const { page } = useParams()
     const limit = 3
     let currentPage: number = Number(page)
     const [response, setResponse] = useState<Paginate>()
-    const getFunkos = (limit: number, page: number,) => {
-        let funkos: Array<Product> | undefined = DB.getProductsByCategory({ toy: Toy.FUNKO })
-        if (funkos) {
-            setResponse(DB.getAllProductsPaginates(limit, page, funkos))
+    const getDinos = (limit: number, page: number,) => {
+        let dinos: Array<Product> | undefined = DB.getProductsByCategory({ toy: Toy.DINOSAURIO })
+        if (dinos) {
+            setResponse(DB.getAllProductsPaginates(limit, page, dinos))
         }
     }
     useEffect(() => {
-        getFunkos(limit, currentPage)
+        getDinos(limit, currentPage)
     }, [page])
-    console.log(response)
     return (<>
-        <h1>/juguetes/funkos/1</h1>
+        <h1>/juguetes/dinos/1</h1>
 
         {
             response && < div>
-                <ContainerCardHome products={response.products} key={'pageFunko'} />
+                <ContainerCardHome products={response.products} key={'pageDinos'} />
                 <Paginator currentPage={currentPage} pageCount={response?.total_pages} justify={""} />
             </div>
         }
     </>);
 }
 
-export default PageFunko;
+export default PageDinosaur;

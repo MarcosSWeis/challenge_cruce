@@ -1,17 +1,18 @@
 
-import { CategoriesProduct, IProduct, Price, QuotaProduct } from "../interfaces/products";
+import { CategoryProduct, IProduct, Price, QuotaProduct } from "../interfaces/products";
 
 
 export class Product implements IProduct {
-    id: number = 0;
+    id: number
     title: string;
     price: Price;
     description: string;
     priceDiscount: number
-    category: CategoriesProduct;
+    category: CategoryProduct;
     image: any;
     quotas: QuotaProduct;
-    constructor(title: string, price: Price, description: string, category: CategoriesProduct, image: any, quotas: QuotaProduct) {
+    constructor(id: number, title: string, price: Price, description: string, category: CategoryProduct, image: any, quotas: QuotaProduct) {
+        this.id = id
         this.title = title
         this.price = price
         this.description = description
@@ -34,7 +35,7 @@ export class Product implements IProduct {
     setDescription(description: string): void {
         this.description = description
     }
-    setCategory(category: CategoriesProduct): void {
+    setCategory(category: CategoryProduct): void {
         this.category = category
     }
     setImage(image: any): void {
@@ -64,7 +65,7 @@ export class Product implements IProduct {
     getDescription(): string {
         return this.description
     }
-    getCategory(): CategoriesProduct {
+    getCategory(): CategoryProduct {
         return this.category
     }
     getImage(): any {

@@ -18,19 +18,18 @@ export default function Card({ product }: CardProps) {
     function handlerDropClick() {
         endTime = new Date()
         l = endTime.getTime() - startTime.getTime()
-        setDifTime(endTime.getTime() - startTime.getTime())
+        setDifTime((endTime.getTime() - startTime.getTime()) / 1000)
         console.log(l / 1000, 'seg')
 
         console.log(l / 1000 > 0.5, 'seg')
         console.log(l, 'ms')
 
     }
-    if (difTime) {
-        console.log(difTime / 1000, 'seg usesteate')
-    }
+
     function addToCart() {
         //mayor que 0.5 seg
         if (difTime && difTime > 0.5) {
+            console.log(difTime, 'seg usesteate')
             console.log(`se añadio al carrito el produto ${product.id}`)
         }
     }
@@ -53,9 +52,15 @@ export default function Card({ product }: CardProps) {
                 }
             </Link>
             <div className="container_desc">
-                <Link to={`/juguetes/${product.category}/1`}>
-                    <h6 className="category">{product.category}</h6>
-                </Link>
+                {
+                    product.category && product.category.toy ?
+                        <Link to={`/juguetes/${product.category.toy.toLocaleLowerCase()}/1`}>
+                            <h6 className="category">{product.category.toy}</h6>
+                        </Link> :
+                        (<Link to={`/juguetes/${product.category.school?.toLocaleLowerCase()}/1`}>
+                            (<h6 className="category">{product.category.school}</h6>)
+                        </Link>)
+                }
                 <Link to={`/product/${product.id}`}>
                     <p className="card-title">{product.title}</p>
                 </Link>

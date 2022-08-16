@@ -1,4 +1,4 @@
-import { CategoriesProduct, QuotaProduct } from "../interfaces/products";
+import { CategoryProduct, QuotaProduct } from "../interfaces/products";
 import { Paginate } from "../models/Paginate";
 import { Product } from "../models/Product"
 import { User } from "../models/User";
@@ -34,8 +34,16 @@ export class dbProducts {
         return this.products.find((product) => product.id === id)
     }
     //obtener productos por category
-    getProductsByCategory(category: CategoriesProduct): Array<Product> | undefined {
-        return this.products.filter((product) => product.category === category)
+    getProductsByCategory(category: CategoryProduct): Array<Product> | undefined {
+
+        if (category.toy) {
+            return this.products.filter((product) => product.category.toy === category.toy)
+        }
+        if (category.school) {
+            return this.products.filter((product) => product.category.school === category.school)
+        }
+
+
     }
     //obtener el id mayor
     getLastId(): number {
@@ -87,6 +95,9 @@ export class dbProducts {
     saveDb(objectToSave: Product): void {
 
     }
+
+    //------***   Users   ***------//
+
 
 }
 
