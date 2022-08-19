@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import { Product } from "../../models/Product";
 import Skeleton from 'react-loading-skeleton'
@@ -6,31 +6,32 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import ContainerCardHome from "./ContainerCardHome";
 import { DB } from "../../services/createdDB";
 import { IMAGES_DINO } from "../../services/importImagesDinosaurios";
+import BtnSee from "../BtnSee";
 
 
 interface HomeProps {
-
+    seeCollection: boolean
+    products: Array<Product>
 }
 interface HomeStates {
     products: Array<Product>
 }
-const Home: React.FunctionComponent<HomeProps> = () => {
+const Home: React.FunctionComponent<HomeProps> = ({ seeCollection, products }) => {
 
-    const [products, setProducts] = useState<HomeStates['products']>([])
+    const firstProducts = products.slice(0, 10)
 
-    console.log(IMAGES_DINO)
-    function getProducts(): void {
-        setProducts(DB.getAllProducts())
-        console.log(DB.getLastId())
-    }
-    console.log(products)
-    useEffect(() => {
-        getProducts()
-    }, [])
 
     return (
         <>
-            {products.length > 0 && <ContainerCardHome products={products} />}
+            {!seeCollection ?
+                <div>
+                    {firstProducts.length > 0 && <ContainerCardHome products={firstProducts} />}
+                </div>
+                : (<div>
+                    {products.length > 0 && <ContainerCardHome products={products} />}
+                </div>)
+            }
+
         </>
     );
 }

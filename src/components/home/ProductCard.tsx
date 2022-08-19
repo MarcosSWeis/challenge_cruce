@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import svg_discount from '../../assets/vector_discount.svg'
 import { Product } from "../../models/Product";
 
-interface CardProps {
+export interface CardProps {
     product: Product
 }
 
-export default function Card({ product }: CardProps) {
+export default function ProductCard({ product }: CardProps) {
 
     const [difTime, setDifTime] = useState<number>()
     let l;
@@ -58,7 +58,7 @@ export default function Card({ product }: CardProps) {
                             <h6 className="category">{product.category.toy}</h6>
                         </Link> :
                         (<Link to={`/juguetes/${product.category.school?.toLocaleLowerCase()}/1`}>
-                            (<h6 className="category">{product.category.school}</h6>)
+                            <h6 className="category">{product.category.school}</h6>
                         </Link>)
                 }
                 <Link to={`/product/${product.id}`}>
