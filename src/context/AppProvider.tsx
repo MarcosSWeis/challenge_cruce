@@ -6,8 +6,10 @@ import { Product } from "../models/Product";
 import { DB } from "../services/createdDB";
 import { User } from "../models/User";
 import { IUser, Role } from "../interfaces/user";
-import { IAppContextProps } from '../interfaces/appContextProps'
+import { IAppContextProps, Redirect } from '../interfaces/appContextProps'
 import { userReducer } from "./userReducer";
+
+
 interface AppProviderProps {
     children: JSX.Element | JSX.Element[]
 }
@@ -34,6 +36,7 @@ const INITIAL_USER: IUserState = {
 }
 export const AppProvider = ({ children }: AppProviderProps) => {
 
+
     const [searching, dispatch] = useReducer(searchReducer, INITIAL_STATE_SEARCH)
     const setSearching = (toSearch: string) => {
         dispatch({ type: 'search', payload: { loading: true, resultSearch: [] } })
@@ -45,7 +48,8 @@ export const AppProvider = ({ children }: AppProviderProps) => {
 
     const [userLogged, UserDispatch] = useReducer(userReducer, INITIAL_USER)
 
-    const setUserLogged = (email: string, password: string) => {
+    const setUserLogged = (email: string, password: string, redirect?: Redirect) => {
+        console.log(email, password)
         // UserDispatch({
         //     type: 'user', payload: {
         //         loading: true, user: undefined, errors: {
@@ -55,6 +59,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         //     }
         // })
         let user = DB.getUserByEmail(email)
+
         if (!user) {
             UserDispatch({
                 type: 'user', payload: {
@@ -84,6 +89,12 @@ export const AppProvider = ({ children }: AppProviderProps) => {
                         }
                     }
                 })
+                console.log(user)
+                if (redirect) {
+                    console.log(user)
+                    redirect('/')
+                }
+
             }
         }
     }

@@ -6,5 +6,6 @@ export interface IAppContextProps {
     searching: ISearchState;
     setSearching: (toSearch: string) => void;
     userLogged: IUserState
-    setUserLogged: (email: string, password: string) => void
+    setUserLogged: (email: string, password: string, redirect?: Redirect) => void
 }
+export type Redirect = (to: string) => void | undefined

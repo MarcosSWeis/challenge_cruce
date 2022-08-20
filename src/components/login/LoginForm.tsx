@@ -1,4 +1,5 @@
 import { withFormik, FormikProps, FormikErrors, Form, Field } from 'formik';
+import { Redirect } from '../../interfaces/appContextProps';
 import { IUserState } from '../../interfaces/redusers';
 interface FormValues {
     email: string;
@@ -56,13 +57,15 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 interface MyFormProps {
     initialEmail?: string;
     message: string;
-    setUserLogged: (email: string, password: string) => void;
-    userLogged: IUserState
+    setUserLogged: (email: string, password: string, redirect?: Redirect) => void
+    userLogged: IUserState,
+    redirect: Redirect
 }
 export const MyForm = withFormik<MyFormProps, FormValues>({
 
     validate: (values: FormValues, props: MyFormProps) => {
         let errors: FormikErrors<FormValues> = {}
+
         if (values.password.length === 0) {
             errors.password = 'Contraseña es requerida';
         } else if (values.password.length < 8) {
@@ -74,14 +77,13 @@ export const MyForm = withFormik<MyFormProps, FormValues>({
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
             errors.email = 'Email no valido';
         }
-        if (props.userLogged.errors.email || props.userLogged.errors.password) {
-            errors.email = props.userLogged.errors.email;
-        }
+
+
         return errors;
     },
 
     handleSubmit: (values: FormValues, { props }) => {
-        props.setUserLogged(values.email, values.password)
+        props.setUserLogged(values.email, values.password, props.redirect)
         // props.setErrors({})
     },
 
