@@ -1,5 +1,5 @@
 
-import { IUser } from "../interfaces/user";
+import { IUser, Role } from "../interfaces/user";
 import { Product } from "./Product";
 
 
@@ -9,17 +9,22 @@ export class User implements IUser {
     lastName: string;
     email: string;
     password: string
+    role: Role
     shoppingCart: Array<Product>
-    constructor(id: number, name: string, lastName: string, email: string, password: string, shoppingCart: Array<Product>) {
+    constructor(id: number, name: string, lastName: string, email: string, password: string, shoppingCart: Array<Product>, role: Role) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.password = password
+        this.role = role
         this.shoppingCart = shoppingCart
     }
 
 
+    addToCart() {
+
+    }
 
 
 
@@ -35,9 +40,9 @@ export class User implements IUser {
     // setEmail(email: string): void {
     //     this.email = email
     // }
-    // setPassword(password: string): void {
-    //     this.password = password
-    // }
+    setPassword(password: string): void {
+        this.password = password
+    }
 
     // //------***   GETTERS   ***------//
     // getId(): number | undefined {

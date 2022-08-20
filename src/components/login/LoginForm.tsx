@@ -1,30 +1,30 @@
-import React from 'react';
-import * as Yup from 'yup';
 import { withFormik, FormikProps, FormikErrors, Form, Field } from 'formik';
-
+import { IUserState } from '../../interfaces/redusers';
 interface FormValues {
     email: string;
     password: string;
 }
 interface OtherProps {
     message: string;
+
 }
 const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
+
+
     const { touched, errors, isSubmitting, message } = props;
     return (
         <div className="tab-content">
             <div className="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
                 <Form>
-
-                    {/*  <!-- Email input --> */}
                     <div className="form-outline mb-4">
-                        <Field type="email" name="email" className="form-control" placeholder='Email' />
+                        <Field type="email" name="email" id="email" className="form-control" placeholder='Email' />
                         {touched.email && errors.email &&
                             <div className='text-danger'>{errors.email}</div>
+
                         }
                     </div>
                     <div className="form-outline mb-4">
-                        <Field type="password" name="password" className="form-control" placeholder='Contraseña' />
+                        <Field type="password" name="password" id="password" className="form-control" placeholder='Contraseña' />
                         {touched.password && errors.password &&
                             <div className='text-danger'>{errors.password}</div>
                         }
@@ -33,7 +33,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
                         <div className="col d-flex justify-content-center">
 
                             <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="form2Example31" checked placeholder='' />
+                                <input className="form-check-input" type="checkbox" defaultValue={""} id="form2Example31" checked placeholder='' />
                                 <label className="form-check-label" htmlFor="form2Example31"> Remember me </label>
                             </div>
                         </div>
@@ -42,7 +42,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
                         </div>
                     </div>
 
-                    <button type="button" className="btn btn-primary btn-block mb-4">Sign in</button>
+                    <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
                 </Form>
 
             </div>
@@ -56,17 +56,14 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 interface MyFormProps {
     initialEmail?: string;
     message: string;
+    setUserLogged: (email: string, password: string) => void;
+    userLogged: IUserState
 }
 export const MyForm = withFormik<MyFormProps, FormValues>({
-    mapPropsToValues: props => {
-        return {
-            email: props.initialEmail || '',
-            password: '',
-        };
-    },
-    validate: (values: FormValues) => {
-        let errors: FormikErrors<FormValues> = {};
-        if (values.password.length == 0) {
+
+    validate: (values: FormValues, props: MyFormProps) => {
+        let errors: FormikErrors<FormValues> = {}
+        if (values.password.length === 0) {
             errors.password = 'Contraseña es requerida';
         } else if (values.password.length < 8) {
             errors.password = 'La contraseña debe poseer al menos 8 caracteres';
@@ -77,12 +74,18 @@ export const MyForm = withFormik<MyFormProps, FormValues>({
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
             errors.email = 'Email no valido';
         }
+        if (props.userLogged.errors.email || props.userLogged.errors.password) {
+            errors.email = props.userLogged.errors.email;
+        }
         return errors;
     },
 
-    handleSubmit: (values: FormValues) => {
-        alert(`registrado con email: ${values.email} , password ${values.password}`)
+    handleSubmit: (values: FormValues, { props }) => {
+        props.setUserLogged(values.email, values.password)
+        // props.setErrors({})
     },
+
+
 
 })(InnerForm);
 

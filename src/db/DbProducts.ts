@@ -97,7 +97,9 @@ export class dbProducts {
     }
 
     //------***   Users   ***------//
-
+    getUserByEmail(email: string): User | undefined {
+        return this.users.find((user) => user.email.trim() === email)
+    }
 
 }
 

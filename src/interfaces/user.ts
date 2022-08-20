@@ -6,5 +6,11 @@ export interface IUser {
     lastName: string
     email: string
     password: string
+    role: Role
     shoppingCart: Array<Product>
+}
+
+export enum Role {
+    admin = 1,
+    standard = 2,
 }

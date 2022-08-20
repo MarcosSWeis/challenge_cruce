@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BtnSee from "../../components/BtnSee";
 import CardProduct2 from "../../components/CardProduct2";
@@ -12,6 +12,7 @@ import { DB } from "../../services/createdDB";
 
 import { CategoryProduct, Toy } from '../../interfaces/products'
 import Timer from "../../components/timer/Timer";
+import { AppContext } from "../../context/AppContext";
 interface PageHomeProps {
 
 }
@@ -21,7 +22,6 @@ const PageHome: React.FunctionComponent<PageHomeProps> = () => {
     const products = useMemo(() => DB.getAllProducts(), [seeCollection])
     const [funkos, setFunkos] = useState<Array<Product>>([])
     const [dinos, setDinos] = useState<Array<Product>>([])
-
 
 
     function getFunkos() {
@@ -36,7 +36,6 @@ const PageHome: React.FunctionComponent<PageHomeProps> = () => {
             setDinos(dinos)
         }
     }
-    console.log(funkos)
 
     useEffect(() => {
         getFunkos()

@@ -1,11 +1,12 @@
-import { IUser } from "../../interfaces/user";
+import { IUser, Role } from "../../interfaces/user";
 
 export const mockUsers: Array<IUser> = [{
     id: 1,
-    name: "Ilyse",
-    lastName: "Hiner",
-    email: "ihiner0@macromedia.com",
+    name: "marcos",
+    lastName: "weis",
+    email: "marcos@dh.com",
     password: "123456789",
+    role: Role.admin,
     shoppingCart: []
 }, {
     id: 2,
@@ -13,6 +14,7 @@ export const mockUsers: Array<IUser> = [{
     lastName: "Farrear",
     email: "pfarrear1@buzzfeed.com",
     password: "123456789",
+    role: Role.standard,
     shoppingCart: []
 }, {
     id: 3,
@@ -20,6 +22,7 @@ export const mockUsers: Array<IUser> = [{
     lastName: "Folling",
     email: "cfolling2@cloudflare.com",
     password: "123456789",
+    role: Role.standard,
     shoppingCart: []
 }, {
     id: 4,
@@ -27,6 +30,7 @@ export const mockUsers: Array<IUser> = [{
     lastName: "Albro",
     email: "calbro3@nps.gov",
     password: "123456789",
+    role: Role.standard,
     shoppingCart: []
 }, {
     id: 5,
@@ -34,6 +38,7 @@ export const mockUsers: Array<IUser> = [{
     lastName: "Bloys",
     email: "kbloys4@ezinearticles.com",
     password: "123456789",
+    role: Role.standard,
     shoppingCart: []
 }, {
     id: 6,
@@ -41,6 +46,7 @@ export const mockUsers: Array<IUser> = [{
     lastName: "Pischoff",
     email: "tpischoff5@plala.or.jp",
     password: "123456789",
+    role: Role.admin,
     shoppingCart: []
 }, {
     id: 7,
@@ -48,6 +54,7 @@ export const mockUsers: Array<IUser> = [{
     lastName: "M'Quharge",
     email: "smquharge6@statcounter.com",
     password: "123456789",
+    role: Role.standard,
     shoppingCart: []
 }, {
     id: 8,
@@ -55,6 +62,7 @@ export const mockUsers: Array<IUser> = [{
     lastName: "Gerrelt",
     email: "jgerrelt7@cornell.edu",
     password: "123456789",
+    role: Role.standard,
     shoppingCart: []
 }, {
     id: 9,
@@ -62,6 +70,7 @@ export const mockUsers: Array<IUser> = [{
     lastName: "Fleetwood",
     email: "dfleetwood8@addthis.com",
     password: "123456789",
+    role: Role.standard,
     shoppingCart: []
 }, {
     id: 10,
@@ -69,6 +78,7 @@ export const mockUsers: Array<IUser> = [{
     lastName: "Belvin",
     email: "ibelvin9@time.com",
     password: "123456789",
+    role: Role.standard,
     shoppingCart: []
 }, {
     id: 11,
@@ -76,6 +86,7 @@ export const mockUsers: Array<IUser> = [{
     lastName: "Brecher",
     email: "pbrechera@phoca.cz",
     password: "123456789",
+    role: Role.standard,
     shoppingCart: []
 }, {
     id: 12,
@@ -83,6 +94,7 @@ export const mockUsers: Array<IUser> = [{
     lastName: "Normanvell",
     email: "onormanvellb@eventbrite.com",
     password: "123456789",
+    role: Role.standard,
     shoppingCart: []
 }, {
     id: 13,
@@ -90,6 +102,7 @@ export const mockUsers: Array<IUser> = [{
     lastName: "Woodstock",
     email: "mwoodstockc@theglobeandmail.com",
     password: "123456789",
+    role: Role.standard,
     shoppingCart: []
 }, {
     id: 14,
@@ -97,6 +110,7 @@ export const mockUsers: Array<IUser> = [{
     lastName: "Woodrough",
     email: "jwoodroughd@uiuc.edu",
     password: "123456789",
+    role: Role.standard,
     shoppingCart: []
 }, {
     id: 15,
@@ -104,6 +118,7 @@ export const mockUsers: Array<IUser> = [{
     lastName: "Dewi",
     email: "fdewie@berkeley.edu",
     password: "123456789",
+    role: Role.standard,
     shoppingCart: []
 }, {
     id: 16,
@@ -111,6 +126,7 @@ export const mockUsers: Array<IUser> = [{
     lastName: "Fritschel",
     email: "wfritschelf@slideshare.net",
     password: "123456789",
+    role: Role.standard,
     shoppingCart: []
 }, {
     id: 17,
@@ -118,6 +134,7 @@ export const mockUsers: Array<IUser> = [{
     lastName: "Shovelin",
     email: "ishoveling@qq.com",
     password: "123456789",
+    role: Role.standard,
     shoppingCart: []
 }, {
     id: 18,
@@ -125,6 +142,7 @@ export const mockUsers: Array<IUser> = [{
     lastName: "Polson",
     email: "cpolsonh@tinyurl.com",
     password: "123456789",
+    role: Role.admin,
     shoppingCart: []
 }, {
     id: 19,
@@ -132,6 +150,7 @@ export const mockUsers: Array<IUser> = [{
     lastName: "Dibley",
     email: "kdibleyi@purevolume.com",
     password: "123456789",
+    role: Role.standard,
     shoppingCart: []
 }, {
     id: 20,
@@ -139,5 +158,6 @@ export const mockUsers: Array<IUser> = [{
     lastName: "Simco",
     email: "msimcoj@economist.com",
     password: "123456789",
+    role: Role.standard,
     shoppingCart: []
 }]
