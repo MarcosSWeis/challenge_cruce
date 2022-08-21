@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import ToySelector from "../../components/toy/ToyNavBar";
+import ToySelector from "../../components/toyNavBar/ToyNavBar";
 
 interface PageToyProps {
 

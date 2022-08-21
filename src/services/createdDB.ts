@@ -16,3 +16,8 @@ export function createDB(): void {
         localStorage.setItem('db_cruce', JSON.stringify(DB))
     }
 }
+
+export function saveDB() {
+    localStorage.setItem('db_cruce', JSON.stringify(DB))
+}
+

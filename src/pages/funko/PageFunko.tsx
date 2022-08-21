@@ -5,7 +5,7 @@ import Paginator from "../../components/Paginator";
 import { CategoryProduct, Toy } from "../../interfaces/products";
 import { Paginate } from "../../models/Paginate";
 import { Product } from "../../models/Product";
-import { DB } from "../../services/createdDB";
+import { getAllProductsPaginates, getProductsByCategory } from "../../services/db-service";
 
 interface PageFunkoProps {
 
@@ -17,9 +17,9 @@ const PageFunko: React.FunctionComponent<PageFunkoProps> = () => {
     let currentPage: number = Number(page)
     const [response, setResponse] = useState<Paginate>()
     const getFunkos = (limit: number, page: number,) => {
-        let funkos: Array<Product> | undefined = DB.getProductsByCategory({ toy: Toy.FUNKO })
+        let funkos: Array<Product> | undefined = getProductsByCategory({ toy: Toy.FUNKO })
         if (funkos) {
-            setResponse(DB.getAllProductsPaginates(limit, page, funkos))
+            setResponse(getAllProductsPaginates(limit, page, funkos))
         }
     }
     useEffect(() => {

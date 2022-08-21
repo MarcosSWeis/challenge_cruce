@@ -1,37 +1,34 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useMemo, useState } from "react";
 import BtnSee from "../../components/BtnSee";
 import CardProduct2 from "../../components/CardProduct2";
 import CardCarrusel from "../../components/carrusel/CardCarrusel";
-import Carrusell from "../../components/carrusel/Carrusel";
-
 import Home from "../../components/home/Home";
 import ProductCard from "../../components/home/ProductCard";
 import { Product } from "../../models/Product";
-import { DB } from "../../services/createdDB";
-
-import { CategoryProduct, Toy } from '../../interfaces/products'
+import { Toy } from '../../interfaces/products'
 import Timer from "../../components/timer/Timer";
-import { AppContext } from "../../context/AppContext";
+import { getAllProducts, getProductsByCategory } from "../../services/db-service";
+
 interface PageHomeProps {
 
 }
 
 const PageHome: React.FunctionComponent<PageHomeProps> = () => {
     const [seeCollection, setSeeCollection] = useState<boolean>(false)
-    const products = useMemo(() => DB.getAllProducts(), [seeCollection])
+    const products = useMemo(() => getAllProducts(), [seeCollection])
     const [funkos, setFunkos] = useState<Array<Product>>([])
     const [dinos, setDinos] = useState<Array<Product>>([])
 
 
+
     function getFunkos() {
-        let funkos: Array<Product> | undefined = DB.getProductsByCategory({ toy: Toy.FUNKO })
+        let funkos: Array<Product> | undefined = getProductsByCategory({ toy: Toy.FUNKO })
         if (funkos) {
             setFunkos(funkos)
         }
     }
     function getDinos() {
-        let dinos: Array<Product> | undefined = DB.getProductsByCategory({ toy: Toy.DINOSAURIO })
+        let dinos: Array<Product> | undefined = getProductsByCategory({ toy: Toy.DINOSAURIO })
         if (dinos) {
             setDinos(dinos)
         }
@@ -40,7 +37,6 @@ const PageHome: React.FunctionComponent<PageHomeProps> = () => {
     useEffect(() => {
         getFunkos()
         getDinos()
-
     }, [])
     return (
         <>

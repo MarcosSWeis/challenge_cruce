@@ -5,7 +5,7 @@ import Paginator from "../../components/Paginator";
 import { Toy } from "../../interfaces/products";
 import { Paginate } from "../../models/Paginate";
 import { Product } from "../../models/Product";
-import { DB } from "../../services/createdDB";
+import { getAllProductsPaginates, getProductsByCategory } from "../../services/db-service";
 
 interface DinosaurProps {
 
@@ -18,9 +18,9 @@ const PageDinosaur: React.FunctionComponent<DinosaurProps> = () => {
     let currentPage: number = Number(page)
     const [response, setResponse] = useState<Paginate>()
     const getDinos = (limit: number, page: number,) => {
-        let dinos: Array<Product> | undefined = DB.getProductsByCategory({ toy: Toy.DINOSAURIO })
+        let dinos: Array<Product> | undefined = getProductsByCategory({ toy: Toy.DINOSAURIO })
         if (dinos) {
-            setResponse(DB.getAllProductsPaginates(limit, page, dinos))
+            setResponse(getAllProductsPaginates(limit, page, dinos))
         }
     }
     useEffect(() => {

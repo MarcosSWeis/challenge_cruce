@@ -2,12 +2,10 @@ import { useReducer } from "react";
 import { AppContext } from "./AppContext";
 import { searchReducer } from "./searchReducer";
 import { ISearchState, IUserState } from "../interfaces/redusers";
-import { Product } from "../models/Product";
-import { DB } from "../services/createdDB";
 import { User } from "../models/User";
-import { IUser, Role } from "../interfaces/user";
-import { IAppContextProps, Redirect } from '../interfaces/appContextProps'
 import { userReducer } from "./userReducer";
+import { getProductoByTitle, getUserByEmail } from "../services/db-service";
+import { type } from "os";
 
 
 interface AppProviderProps {
@@ -42,13 +40,13 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         dispatch({ type: 'search', payload: { loading: true, resultSearch: [] } })
 
         setTimeout(() => {//simulo la asincronia
-            dispatch({ type: 'search', payload: { loading: false, resultSearch: DB.getProductoByTitle(toSearch) } })
+            dispatch({ type: 'search', payload: { loading: false, resultSearch: getProductoByTitle(toSearch) } })
         }, 1000 * 2);//2seg
     }
 
     const [userLogged, UserDispatch] = useReducer(userReducer, INITIAL_USER)
 
-    const setUserLogged = (email: string, password: string, redirect?: Redirect) => {
+    const setUserLogged = (email: string, password: string) => {
         console.log(email, password)
         // UserDispatch({
         //     type: 'user', payload: {
@@ -58,7 +56,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         //         }
         //     }
         // })
-        let user = DB.getUserByEmail(email)
+        let user = getUserByEmail(email)
 
         if (!user) {
             UserDispatch({
@@ -92,11 +90,16 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         }
     }
 
-
+    const logout = () => {
+        UserDispatch({ type: 'user', payload: { ...INITIAL_USER } })
+    }
+    const updatedUserLogged = (updatedUser: User) => {
+        UserDispatch({ type: 'user', payload: { ...INITIAL_USER, userLogged: updatedUser } })
+    }
 
 
     return (
-        <AppContext.Provider value={{ searching, setSearching, userLogged, setUserLogged }}>
+        <AppContext.Provider value={{ searching, setSearching, userLogged, setUserLogged, logout, updatedUserLogged }}>
             {children}
         </AppContext.Provider >
     )

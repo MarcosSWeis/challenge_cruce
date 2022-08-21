@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import Menu from './Menu'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/logo.svg'
 import cart from '../../assets/shopping_cart.svg'
+import { AppContext } from '../../context/AppContext'
 interface NavBarProps {
 
 }
@@ -19,9 +20,15 @@ interface IMenu {
 
 
 const NavBar: React.FunctionComponent<NavBarProps> = () => {
-
-    const userLogged = null
-
+    const { userLogged, logout } = useContext(AppContext)
+    const user = userLogged.userLogged
+    console.log(userLogged)
+    function getTotalCart(): number | undefined {
+        return user?.getShoppingCart().length
+    }
+    useEffect(() => {
+        getTotalCart()
+    }, [userLogged])
     const menu: IMenu['menu'] = [
 
         {
@@ -75,15 +82,19 @@ const NavBar: React.FunctionComponent<NavBarProps> = () => {
                             className='m-auto'
                         />
                     </Link>
-
-                    <Link to={'/carrito'}>
-                        <img
-                            src={cart}
-                            alt="Logo ong"
-                            height={"40px"}
-                            style={{ transform: "scale(0.6)" }}
-                        />
-                    </Link>
+                    <div className='containerCartNavBar'>
+                        <Link to={'/carrito'}>
+                            <img
+                                src={cart}
+                                alt="Logo ong"
+                                height={"40px"}
+                                style={{ transform: "scale(0.6)" }}
+                            />
+                        </Link>
+                        {
+                            user && <h6>{getTotalCart()}</h6>
+                        }
+                    </div>
 
 
                     <div
@@ -98,12 +109,12 @@ const NavBar: React.FunctionComponent<NavBarProps> = () => {
                         <div className=" ">
 
                             {
-                                userLogged ?
+                                userLogged.userLogged ?
                                     <button
                                         className="btn btn-danger mx-3  rounded-pill"
                                         type="submit"
                                         style={{ transform: "scale(1.2)" }}
-                                    /*  onClick={() => { logout(dispatch) }} */
+                                        onClick={() => { logout() }}
                                     >
                                         Log Out
                                     </button> :

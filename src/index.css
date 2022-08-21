@@ -503,6 +503,22 @@ tr {
     margin: auto;
 }
 
+
+/*CONTAINER CART NAVBAR*/
+.containerCartNavBar {
+    position: relative;
+}
+
+.containerCartNavBar h6 {
+    color: #EC2227;
+    position: absolute;
+    top: 1rem;
+    right: -1rem;
+    font-family: 'Neue Machina';
+    font-weight: bold;
+
+}
+
 @media screen and (min-width: 720px) {
     .helpTouch {
         display: none;

@@ -35,15 +35,13 @@ export class dbProducts {
     }
     //obtener productos por category
     getProductsByCategory(category: CategoryProduct): Array<Product> | undefined {
-
+        console.log(category.toy)
         if (category.toy) {
             return this.products.filter((product) => product.category.toy === category.toy)
         }
         if (category.school) {
             return this.products.filter((product) => product.category.school === category.school)
         }
-
-
     }
     //obtener el id mayor
     getLastId(): number {
@@ -92,15 +90,19 @@ export class dbProducts {
     }
     /// save method
     //tipo produsct o user
-    saveDb(objectToSave: Product): void {
-
-    }
 
     //------***   Users   ***------//
     getUserByEmail(email: string): User | undefined {
         return this.users.find((user) => user.email.trim() === email)
     }
 
+    getPositionUser(email: string): number {
+        return this.users.findIndex((user) => user.email === email)
+    }
+
+    saveUser(index: number, updatedUser: User): void {
+        this.users[index] = updatedUser
+    }
 }
 
 //export const DB: dbProducts = new dbProducts(seedInstanceProduct(mockProducts), seedInstanceUser(mockUsers));

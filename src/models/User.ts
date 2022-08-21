@@ -22,10 +22,12 @@ export class User implements IUser {
     }
 
 
-    addToCart() {
-
+    addToCart(product: Product): void {
+        this.shoppingCart.push(product)
     }
-
+    getShoppingCart(): Array<Product> {
+        return this.shoppingCart
+    }
 
 
     // setCreateId(id: number): void {

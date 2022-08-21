@@ -1,43 +1,56 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import svg_discount from '../../assets/vector_discount.svg'
+import { AppContext } from '../../context/AppContext';
+import { UpdatedUserLogged } from '../../interfaces/appContextProps';
 import { Product } from "../../models/Product";
-
+import { User } from '../../models/User';
+import { addToCart } from '../../services/db-service'
 export interface CardProps {
     product: Product
 }
 
 export default function ProductCard({ product }: CardProps) {
-
+    const { userLogged, updatedUserLogged } = useContext(AppContext)
+    const user = userLogged.userLogged
+    const navigate = useNavigate()
     const [difTime, setDifTime] = useState<number>()
-    let l;
-    let productSelected: Date, startTime: Date, endTime: Date;
+    let startTime: Date, endTime: Date;
     function handlerPresClick() {
         startTime = new Date()
     }
     function handlerDropClick() {
         endTime = new Date()
-        l = endTime.getTime() - startTime.getTime()
         setDifTime((endTime.getTime() - startTime.getTime()) / 1000)
-        console.log(l / 1000, 'seg')
-
-        console.log(l / 1000 > 0.5, 'seg')
-        console.log(l, 'ms')
-
     }
 
-    function addToCart() {
+    function getWidthScreen(): number {
+        let widthScreen = window.screen.width
+        return widthScreen
+    }
+
+    function addCart() {
         //mayor que 0.5 seg
-        if (difTime && difTime > 0.5) {
-            console.log(difTime, 'seg usesteate')
-            console.log(`se añadio al carrito el produto ${product.id}`)
+        if (getWidthScreen() < 720) {
+            if (difTime && difTime > 0.5) {
+                verifyUserToAddCart(user, updatedUserLogged)
+            }
+        } else {
+            verifyUserToAddCart(user, updatedUserLogged)
         }
     }
 
+    function verifyUserToAddCart(user?: User, updatedUserLogged?: UpdatedUserLogged) {
+        if (user && updatedUserLogged) {
+            addToCart(product.id, user, updatedUserLogged)
+        } else {
+            navigate('/login')
+        }
+    }
     //console.log("Tiempo transcurrido:\n" + timeDiff + " ms");
     useEffect(() => {
-        addToCart()
-    }, [difTime])
+
+    }, [difTime, userLogged])
     return (
         < div className='card' >
             <Link to={`/product/${product.id}`}>
@@ -78,7 +91,9 @@ export default function ProductCard({ product }: CardProps) {
                 </div>
             </div>
 
-            <div className="containerCart" id='btnAddCart' onMouseDown={handlerPresClick} onMouseUp={handlerDropClick}>
+            <div className="containerCart" id='btnAddCart' onMouseDown={handlerPresClick} onMouseUp={handlerDropClick} onClick={() => {
+                addCart()
+            }}>
                 <button className="btnCart">
                     <i className="bi bi-cart3"></i>
                 </button>
