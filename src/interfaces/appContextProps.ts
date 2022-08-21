@@ -8,4 +8,5 @@ export interface IAppContextProps {
     userLogged: IUserState
     setUserLogged: (email: string, password: string, redirect?: Redirect) => void
 }
-export type Redirect = (to: string) => void | undefined
+export type Redirect = (user: IUserState, CallbackRedirect: CallbackRedirect, to: string) => void | undefined
+export type CallbackRedirect = (to: string) => void 

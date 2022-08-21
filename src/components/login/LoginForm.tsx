@@ -1,6 +1,7 @@
 import { withFormik, FormikProps, FormikErrors, Form, Field } from 'formik';
 import { Redirect } from '../../interfaces/appContextProps';
 import { IUserState } from '../../interfaces/redusers';
+import Alert from '../../services/alert-service';
 interface FormValues {
     email: string;
     password: string;
@@ -59,7 +60,7 @@ interface MyFormProps {
     message: string;
     setUserLogged: (email: string, password: string, redirect?: Redirect) => void
     userLogged: IUserState,
-    redirect: Redirect
+
 }
 export const MyForm = withFormik<MyFormProps, FormValues>({
 
@@ -83,7 +84,10 @@ export const MyForm = withFormik<MyFormProps, FormValues>({
     },
 
     handleSubmit: (values: FormValues, { props }) => {
-        props.setUserLogged(values.email, values.password, props.redirect)
+        console.log(props.userLogged)
+        props.setUserLogged(values.email, values.password)
+
+
         // props.setErrors({})
     },
 

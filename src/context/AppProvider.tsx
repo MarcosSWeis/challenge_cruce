@@ -71,7 +71,6 @@ export const AppProvider = ({ children }: AppProviderProps) => {
             })
         } else {
             if (user.password !== password) {
-
                 UserDispatch({
                     type: 'user', payload: {
                         loading: false, userLogged: undefined, errors: {
@@ -89,12 +88,6 @@ export const AppProvider = ({ children }: AppProviderProps) => {
                         }
                     }
                 })
-                console.log(user)
-                if (redirect) {
-                    console.log(user)
-                    redirect('/')
-                }
-
             }
         }
     }
