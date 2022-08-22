@@ -56,3 +56,4 @@ export const getUserByEmail = (email: string): User | undefined => {
 export const getAllProductsPaginates = (limit: number, page: number, arrToPaginate: Product[]): Paginate => {
     return DB.getAllProductsPaginates(limit, page, arrToPaginate)
 }
+

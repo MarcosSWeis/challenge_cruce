@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import Menu from './Menu'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, Navigate, useLocation } from 'react-router-dom'
 import logo from '../../assets/logo.svg'
 import cart from '../../assets/shopping_cart.svg'
 import { AppContext } from '../../context/AppContext'
@@ -22,12 +22,23 @@ interface IMenu {
 const NavBar: React.FunctionComponent<NavBarProps> = () => {
     const { userLogged, logout } = useContext(AppContext)
     const user = userLogged.userLogged
+    const location = useLocation();
+    const navigate = useNavigate()
     console.log(userLogged)
-    function getTotalCart(): number | undefined {
-        return user?.getShoppingCart().length
+
+
+    function handlerCart() {
+        user ? navigate('/carrito') : navigate('/login', {
+            state: {
+                from: {
+                    ...location,
+                    pathname: '/carrito'
+                }
+            }
+        })
     }
     useEffect(() => {
-        getTotalCart()
+
     }, [userLogged])
     const menu: IMenu['menu'] = [
 
@@ -82,17 +93,16 @@ const NavBar: React.FunctionComponent<NavBarProps> = () => {
                             className='m-auto'
                         />
                     </Link>
-                    <div className='containerCartNavBar'>
-                        <Link to={'/carrito'}>
-                            <img
-                                src={cart}
-                                alt="Logo ong"
-                                height={"40px"}
-                                style={{ transform: "scale(0.6)" }}
-                            />
-                        </Link>
+                    <div className='containerCartNavBar' >
+                        <img
+                            src={cart}
+                            alt="Logo ong"
+                            height={"40px"}
+                            style={{ transform: "scale(0.6)" }}
+                            onClick={handlerCart}
+                        />
                         {
-                            user && <h6>{getTotalCart()}</h6>
+                            user && <h6 style={user.shoppingCart.length < 10 ? { right: '-0.3rem' } : { right: '-1rem' }}>{user.shoppingCart.length}</h6>
                         }
                     </div>
 
@@ -109,7 +119,7 @@ const NavBar: React.FunctionComponent<NavBarProps> = () => {
                         <div className=" ">
 
                             {
-                                userLogged.userLogged ?
+                                user ?
                                     <button
                                         className="btn btn-danger mx-3  rounded-pill"
                                         type="submit"

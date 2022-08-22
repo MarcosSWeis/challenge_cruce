@@ -30,6 +30,12 @@ export class User implements IUser {
     }
 
 
+
+    setShoppingCart(products: Array<Product>) {
+        this.shoppingCart = products
+    }
+
+
     // setCreateId(id: number): void {
     //     this.id = id
     // }
