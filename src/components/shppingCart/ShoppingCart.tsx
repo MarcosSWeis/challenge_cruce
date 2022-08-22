@@ -49,6 +49,22 @@ const ShoppingCart: React.FunctionComponent<ShoppingCartProps> = () => {
         }
     }
 
+    function addMoreInCart(id: number, countProd: number) {
+        if (user) {
+            let product = user.shoppingCart.find((product) => product.id == id)
+            let clearShoppingCart: Array<Product> = user.shoppingCart.filter((product) => product.id !== id)
+            for (let i = 0; i < countProd; i++) {
+                if (product) {
+                    clearShoppingCart.push(product)
+                }
+            }
+            user.setShoppingCart(clearShoppingCart)
+            updatedUserLogged(user)
+            saveDB()
+        }
+
+    }
+
 
     return (
         <section className="shopping-cart dark">
@@ -64,8 +80,7 @@ const ShoppingCart: React.FunctionComponent<ShoppingCartProps> = () => {
                         <div className="col-md-12 ">
                             <div className="items">
                                 {
-
-                                    shoppingCart.map((product) => < CardShoppingCart product={product} getPositionsToDelete={getPositionsToDelete} />)
+                                    shoppingCart.map((product) => < CardShoppingCart product={product} getPositionsToDelete={getPositionsToDelete} addMoreInCart={addMoreInCart} />)
                                 }
                                 <div className="col-md-12 col-lg-5 m-auto">
                                     {
