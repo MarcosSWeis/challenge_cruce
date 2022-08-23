@@ -63,3 +63,15 @@ export function getTotalPriceCart(shoppingCart: Array<countShoppingCart>): Total
         discount: discount
     }
 }
+
+
+export function getLastIdUsers(): number {
+    return DB.getLastIdUser()
+}
+export function addUserInDb(user: User): void {
+    DB.addUser(user)
+}
+
+export function getUserByEmail(email: string): User | undefined {
+    return DB.getUserByEmail(email)
+}

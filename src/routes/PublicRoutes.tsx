@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import NotFound from "../components/notfound/NotFound";
+import { RegisterForm } from "../components/register/RegisterForm";
 import ShoppingCart from "../components/shppingCart/ShoppingCart";
 import PageHome from "../pages/home/PageHome";
 import PageLogin from "../pages/login/PageLogin";
@@ -20,7 +21,7 @@ const PublicRoutes: React.FunctionComponent<PublicRoutesProps> = () => {
                 <Route path='search' element={<PageSearch />} />
                 <Route path='juguetes/*' element={<ToyRoutes />} />
                 <Route path='login' element={<PageLogin />} />
-
+                <Route path='registrarse' element={<RegisterForm />} />
                 <Route path='carrito' element={<PrivareRouter><ShoppingCart /></PrivareRouter>} />
 
 

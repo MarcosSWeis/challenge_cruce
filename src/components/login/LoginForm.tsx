@@ -1,7 +1,6 @@
 import { withFormik, FormikProps, FormikErrors, Form, Field } from 'formik';
 import { Redirect } from '../../interfaces/appContextProps';
 import { IUserState } from '../../interfaces/redusers';
-import Alert from '../../services/alert-service';
 interface FormValues {
     email: string;
     password: string;
@@ -62,7 +61,7 @@ interface MyFormProps {
     userLogged: IUserState,
 
 }
-export const MyForm = withFormik<MyFormProps, FormValues>({
+export const LoginForm = withFormik<MyFormProps, FormValues>({
 
     validate: (values: FormValues, props: MyFormProps) => {
         let errors: FormikErrors<FormValues> = {}

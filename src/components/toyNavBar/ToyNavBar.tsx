@@ -14,10 +14,6 @@ const ToySelector: React.FunctionComponent<ToySelectorProps> = () => {
             <li className="nav-item">
                 <Link to={'/juguetes/dinosaurio/1'} className="nav-link" >Dinosaurios</Link>
             </li>
-            <li className="nav-item">
-                <Link to={'/juguetes/jansport/1'} className="nav-link" >Jansports</Link>
-            </li>
-
         </ul>
 
     );

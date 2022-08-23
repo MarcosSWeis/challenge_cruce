@@ -396,6 +396,25 @@ tr {
     margin: auto;
 }
 
+.container-sponsor {
+    padding: 2rem;
+}
+
+.top-sponsor {
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    max-width: 500px;
+    margin-bottom: 1rem;
+}
+
+.bottom-sponsor {
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    max-width: 500px;
+}
+
 
 /*CARRUSEL*/
 .card-carousel div h2 {
@@ -659,6 +678,27 @@ tr {
 
 }
 
+/*FILTERS*/
+.container-filters {
+    width: 90%;
+    margin: auto;
+    max-width: 500px;
+    padding: 1rem
+}
+
+.container-sub-filter {
+    margin-top: 1rem;
+}
+
+/*REGISTER FORM*/
+
+.container-register-form {
+    max-width: 500PX;
+    margin: auto;
+    margin-top: 40PX;
+}
+
+
 
 @media screen and (min-width: 720px) {
     .helpTouch {
@@ -732,6 +772,14 @@ tr {
         margin-left: 2rem;
     }
 
+    .none {
+        display: none;
+    }
+}
+
+.btnregister {
+    background-color: #7D5A94;
+    border: #7D5A94 solid 1px;
 }
 
 @media screen and (min-width: 1600px) {
@@ -740,6 +788,8 @@ tr {
         display: flex;
 
     }
+
+
 
     .dinos-card-carousel {
         max-width: 800px;
@@ -751,7 +801,5 @@ tr {
         grid-template-columns: repeat(6, 1fr);
     }
 
-    .carousel-control-prev {
-        background-color: transparent;
-    }
+
 }

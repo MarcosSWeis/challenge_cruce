@@ -4,7 +4,13 @@ import { styled } from "@mui/material/styles";
 import BtnSee from "./BtnSee";
 
 
-interface RangeProps { }
+interface RangeProps {
+    setMax: React.Dispatch<React.SetStateAction<number>>,
+    setMin: React.Dispatch<React.SetStateAction<number>>,
+    max: number,
+    min: number,
+    cb?: () => void
+}
 interface Values {
     values: Array<number> | number
 }
@@ -20,10 +26,13 @@ const FilterRange = styled(Slider)(() => ({
     },
 }))
 
-const Range: React.FunctionComponent<RangeProps> = () => {
-    const [val, setVal] = useState<Values['values']>([1, 10000]);
-    let min = typeof val != "number" ? val[0] : val
-    let max = typeof val != "number" ? val[1] : val
+const Range: React.FunctionComponent<RangeProps> = ({ setMax, setMin, max, min }) => {
+    const [val, setVal] = useState<Values['values']>([min, max]);
+    let minimum = typeof val != "number" ? val[0] : val
+    let maximum = typeof val != "number" ? val[1] : val
+    setMax(maximum)
+    setMin(minimum)
+
     function handlerChangeRangeMin(event: React.ChangeEvent<HTMLInputElement>) {
         if (typeof val != "number") {
             if (Number(event.target.value) !== val[0]) {
@@ -46,13 +55,13 @@ const Range: React.FunctionComponent<RangeProps> = () => {
                     <div className="field">
                         <div className="input-group mb-3" >
                             <span className="input-group-text">$</span>
-                            <input type="number" name="min" className="input-min form-control" onChange={handlerChangeRangeMin} max={10000} min={1} value={min} />
+                            <input type="number" name="min" className="input-min form-control" onChange={handlerChangeRangeMin} max={10000} min={1} value={minimum} />
                         </div>
                     </div>
                     <div className="field">
                         <div className="input-group mb-3" >
                             <span className="input-group-text">$</span>
-                            <input type="number" name="max" className="input-max form-control" value={max} max={10000} min={1} onChange={handlerChangeRangeMax} />
+                            <input type="number" name="max" className="input-max form-control" value={maximum} max={10000} min={1} onChange={handlerChangeRangeMax} />
                         </div>
                     </div>
                 </div>
@@ -65,7 +74,7 @@ const Range: React.FunctionComponent<RangeProps> = () => {
                         max={10000}
                         value={val}
                         onChange={(ev, v) => setVal(v)}
-                        onChangeCommitted={(ev, v) => console.log(v)}
+                        /*  onChangeCommitted={(ev, v) => console.log(v)} */
                         valueLabelDisplay="off"
                         aria-labelledby="range-slider"
                         disableSwap

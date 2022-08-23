@@ -44,7 +44,7 @@ export class dbProducts {
         }
     }
     //obtener el id mayor
-    getLastId(): number {
+    getLastIdProduct(): number {
         let ids: Array<number> = this.products.map((product) => product.id)
         let mayor: number = ids[0]
         for (let i = 0; i < ids.length; i++) {
@@ -52,7 +52,18 @@ export class dbProducts {
                 mayor = ids[i]
             }
         }
-        return mayor
+        return mayor + 1
+    }
+
+    getLastIdUser(): number {
+        let ids: Array<number> = this.users.map((user) => user.id)
+        let mayor: number = ids[0]
+        for (let i = 0; i < ids.length; i++) {
+            if (ids[i] > mayor) {
+                mayor = ids[i]
+            }
+        }
+        return mayor + 1
     }
     //filtrar por precio maximo y minimo
     getFilterPrice(minPrice?: number | undefined, maxPrice?: number | undefined): Array<Product> {
@@ -62,8 +73,8 @@ export class dbProducts {
         return this.products.filter((product) => product.price.price < max && product.price.price > min)
     }
     //filtrar por descuento
-    getFilterDiscount(): Array<Product> | undefined {
-        return this.products.filter((product) => product.price.discount !== 0)
+    getFilterDiscount(discount: number): Array<Product> | undefined {
+        return this.products.filter((product) => product.price.discount <= discount)
     }
     //buscar producto pro nombre
     getProductoByTitle(search: string): Array<Product> {
@@ -80,7 +91,7 @@ export class dbProducts {
 
     //añadir un producto
     addProduct(product: Product): void {
-        product.setCreateId(this.getLastId())
+        product.setCreateId(this.getLastIdProduct())
         this.products.push(product)
     }
     //borrar un producto
@@ -95,7 +106,9 @@ export class dbProducts {
     getUserByEmail(email: string): User | undefined {
         return this.users.find((user) => user.email.trim() === email)
     }
-
+    addUser(user: User): void {
+        this.users.push(user)
+    }
     getPositionUser(email: string): number {
         return this.users.findIndex((user) => user.email === email)
     }

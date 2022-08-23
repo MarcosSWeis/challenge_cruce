@@ -28,6 +28,10 @@ export interface TotalsPay {
     total: number
     discount: number
 }
+export interface OldPositions {
+    product: Product,
+    index: number
+}
 
 const ShoppingCart: React.FunctionComponent<ShoppingCartProps> = () => {
     const { userLogged, updatedUserLogged } = useContext(AppContext)
@@ -51,9 +55,9 @@ const ShoppingCart: React.FunctionComponent<ShoppingCartProps> = () => {
 
     function addMoreInCart(id: number, countProd: number) {
         if (user) {
-            let product = user.shoppingCart.find((product) => product.id == id)
             let clearShoppingCart: Array<Product> = user.shoppingCart.filter((product) => product.id !== id)
             for (let i = 0; i < countProd; i++) {
+                let product = user.shoppingCart.find((product) => product.id !== id)
                 if (product) {
                     clearShoppingCart.push(product)
                 }

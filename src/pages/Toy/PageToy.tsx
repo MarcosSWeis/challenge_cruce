@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import ToySelector from "../../components/toyNavBar/ToyNavBar";
+import Range from "../../components/Range";
+import ToyNavbar from "../../components/toyNavBar/ToyNavBar";
 
 interface PageToyProps {
 
@@ -8,7 +9,7 @@ interface PageToyProps {
 
 const PageToy: React.FunctionComponent<PageToyProps> = () => {
     return (<>
-        <ToySelector />
+        <ToyNavbar />
         <Outlet />
     </>
     );

@@ -46,26 +46,14 @@ const NavBar: React.FunctionComponent<NavBarProps> = () => {
             text: 'home',
             link: '/'
         },
-        {
-            text: "Categorías",
-            link: '/categorias'
-        },
+
         {
             text: "Juguetes",
             link: '/juguetes'
         },
-        {
-            text: "CryBabies",
-            link: '/bebesLlorones'
-        },
-        {
-            text: "Funko",
-            link: '/funko'
-        },
-        {
-            text: "Hot sale!",
-            link: '/hotSale'
-        },
+
+
+
     ]
 
 
@@ -85,12 +73,12 @@ const NavBar: React.FunctionComponent<NavBarProps> = () => {
                         <span className="bi bi-list"></span>
                     </button>
 
-                    <Link to={'/'} className='d-flex justify-content-start w-50 m-auto bg-white text-dark text-decoration-none' >
+                    <Link to={'/'} className='d-flex justify-content-start w-50 m-auto bg-white text-dark text-decoration-none ' >
                         <img
                             src={logo}
                             alt="Logo ong"
                             height={"40px"}
-                            className='m-auto'
+                            className='m-auto none'
                         />
                     </Link>
                     <div className='containerCartNavBar' >
@@ -133,18 +121,17 @@ const NavBar: React.FunctionComponent<NavBarProps> = () => {
                                             className="btn text-dark rounded-pill border border-dark mx-3"
                                             type="submit"
                                             style={{ transform: "scale(1.2)" }}
-                                        /* onClick={() => { navigate('/login') }} */
+                                            onClick={() => { navigate('/login') }}
                                         >
                                             <i className="bi bi-person"></i>
                                         </button>
 
                                         <button
-                                            className="btn btn-danger mx-3  rounded-pill"
+                                            className="btn btn-danger mx-3  rounded-pill btnregister"
                                             type="submit"
                                             style={{ transform: "scale(1.2)" }}
-                                        /*  onClick={() => { navigate('/registrarse') }} */
-                                        >
-                                            Registrate
+                                            onClick={() => { navigate('/registrarse') }}
+                                        >Registrarse
                                         </button>
                                     </div>
 
