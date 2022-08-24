@@ -4,7 +4,7 @@ interface HelpTouchPosterProps {
 
 }
 
-const HelpTouchPoster: React.FunctionComponent<HelpTouchPosterProps> = () => {
+const AlertTouch: React.FunctionComponent<HelpTouchPosterProps> = () => {
     let closeHelpTouch: Element | null
     function handlerCloseHelpTouch() {
         closeHelpTouch?.classList.add('d-none')
@@ -22,4 +22,4 @@ const HelpTouchPoster: React.FunctionComponent<HelpTouchPosterProps> = () => {
     );
 }
 
-export default HelpTouchPoster;
+export default AlertTouch;

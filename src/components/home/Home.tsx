@@ -1,47 +1,40 @@
-import React, { useEffect, useState } from "react";
-import { DB } from "../../db/DbProducts";
-import { getRandom } from "../../helpers/helper";
-import { CategoriesProduct, IProduct, QuotaProduct } from "../../interfaces/products";
-import { Funko } from "../../models/Funko";
+import React, { useContext, useEffect, useMemo, useState } from "react";
+import { AppContext } from "../../context/AppContext";
 import { Product } from "../../models/Product";
-import { User } from "../../models/User";
-import { ENUM_IMAGES_FUNKOS, IMAGES_FUNKOS } from "../../services/importImages";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import ContainerCardHome from "./ContainerCardHome";
+import { DB } from "../../services/createdDB";
+import { IMAGES_DINO } from "../../services/importImagesDinosaurios";
+import BtnSee from "../BtnSee";
 
-import Card from "../CardHome";
 
 interface HomeProps {
-
+    seeCollection: boolean
+    products: Array<Product>
 }
 interface HomeStates {
     products: Array<Product>
 }
+const Home: React.FunctionComponent<HomeProps> = ({ seeCollection, products }) => {
 
-const Home: React.FunctionComponent<HomeProps> = () => {
+    const firstProducts = products.slice(0, 10)
 
-    const [products, setProducts] = useState<HomeStates['products']>([])
-
-    function getProducts(): void {
-        setProducts(DB.getAllProducts())
-    }
-
-    useEffect(() => {
-        getProducts()
-    }, [])
 
     return (
         <>
-            {products.length > 0 ?
-                (
-                    <div className="wrapper">
-                        {products.map((product: Product) => <Card product={product} key={product.id} />)}
-                    </div>
-                ) :
-                (
-                    <h1>NO hay productos</h1>
-                )
+            {!seeCollection ?
+                <div>
+                    {firstProducts.length > 0 && <ContainerCardHome products={firstProducts} />}
+                </div>
+                : (<div>
+                    {products.length > 0 && <ContainerCardHome products={products} />}
+                </div>)
             }
+
         </>
     );
 }
 
 export default Home;
+

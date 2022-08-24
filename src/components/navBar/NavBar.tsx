@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import Menu from './Menu'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, Navigate, useLocation } from 'react-router-dom'
 import logo from '../../assets/logo.svg'
 import cart from '../../assets/shopping_cart.svg'
+import { AppContext } from '../../context/AppContext'
 interface NavBarProps {
 
 }
@@ -19,34 +20,40 @@ interface IMenu {
 
 
 const NavBar: React.FunctionComponent<NavBarProps> = () => {
+    const { userLogged, logout } = useContext(AppContext)
+    const user = userLogged.userLogged
+    const location = useLocation();
+    const navigate = useNavigate()
+    console.log(userLogged)
 
-    const userLogged = null
 
+    function handlerCart() {
+        user ? navigate('/carrito') : navigate('/login', {
+            state: {
+                from: {
+                    ...location,
+                    pathname: '/carrito'
+                }
+            }
+        })
+    }
+    useEffect(() => {
+
+    }, [userLogged])
     const menu: IMenu['menu'] = [
+
         {
             text: 'home',
             link: '/'
         },
+
         {
-            text: "Categorías",
-            link: '/categorias'
+            text: "Juguetes",
+            link: '/juguetes'
         },
-        {
-            text: "LOL",
-            link: '/lol'
-        },
-        {
-            text: "CryBabies",
-            link: '/bebesLlorones'
-        },
-        {
-            text: "Funko",
-            link: '/funko'
-        },
-        {
-            text: "Hot sale!",
-            link: '/hotSale'
-        },
+
+
+
     ]
 
 
@@ -66,23 +73,26 @@ const NavBar: React.FunctionComponent<NavBarProps> = () => {
                         <span className="bi bi-list"></span>
                     </button>
 
-                    <Link to={'/'} className='d-flex justify-content-start w-50 m-auto bg-white text-dark text-decoration-none' >
+                    <Link to={'/'} className='d-flex justify-content-start w-50 m-auto bg-white text-dark text-decoration-none ' >
                         <img
                             src={logo}
                             alt="Logo ong"
                             height={"40px"}
-                            className='m-auto'
+                            className='m-auto none'
                         />
                     </Link>
-
-                    <Link to={'/carrito'}>
+                    <div className='containerCartNavBar' >
                         <img
                             src={cart}
                             alt="Logo ong"
                             height={"40px"}
                             style={{ transform: "scale(0.6)" }}
+                            onClick={handlerCart}
                         />
-                    </Link>
+                        {
+                            user && <h6 style={user.shoppingCart.length < 10 ? { right: '-0.3rem' } : { right: '-1rem' }}>{user.shoppingCart.length}</h6>
+                        }
+                    </div>
 
 
                     <div
@@ -97,12 +107,12 @@ const NavBar: React.FunctionComponent<NavBarProps> = () => {
                         <div className=" ">
 
                             {
-                                userLogged ?
+                                user ?
                                     <button
                                         className="btn btn-danger mx-3  rounded-pill"
                                         type="submit"
                                         style={{ transform: "scale(1.2)" }}
-                                    /*  onClick={() => { logout(dispatch) }} */
+                                        onClick={() => { logout() }}
                                     >
                                         Log Out
                                     </button> :
@@ -111,18 +121,17 @@ const NavBar: React.FunctionComponent<NavBarProps> = () => {
                                             className="btn text-dark rounded-pill border border-dark mx-3"
                                             type="submit"
                                             style={{ transform: "scale(1.2)" }}
-                                        /* onClick={() => { navigate('/login') }} */
+                                            onClick={() => { navigate('/login') }}
                                         >
                                             <i className="bi bi-person"></i>
                                         </button>
 
                                         <button
-                                            className="btn btn-danger mx-3  rounded-pill"
+                                            className="btn btn-danger mx-3  rounded-pill btnregister"
                                             type="submit"
                                             style={{ transform: "scale(1.2)" }}
-                                        /*  onClick={() => { navigate('/registrarse') }} */
-                                        >
-                                            Registrate
+                                            onClick={() => { navigate('/registrarse') }}
+                                        >Registrarse
                                         </button>
                                     </div>
 
