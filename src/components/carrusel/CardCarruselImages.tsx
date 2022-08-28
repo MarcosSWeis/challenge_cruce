@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import { CardProps } from "../home/ProductCard";
 import { imgSlides } from "./Carrusel";
 
-interface CardCarruselProps<T> {
+interface CardCarruselImagesProps<T> {
   carouselId: string;
-  cardsData: Array<any>;
+  cardsData: Array<imgSlides>;
   cardsPerSlide: number;
   titleCarrusel?: string;
-  CardComponent: React.FunctionComponent<PropsComp["propsProdCard"]>;
+  CardComponent: React.FunctionComponent<PropsComp["propsImgesBrands"]>;
+  viewCountSlides?: boolean;
   marginTop?: number;
   marginBottom?: number;
 }
 interface PropsComp {
-  propsProdCard: CardProps;
+  propsImgesBrands: imgSlides;
 }
 
 interface EstateCardProduct {
@@ -21,15 +22,16 @@ interface EstateCardProduct {
     totalSlider: number;
   };
 }
-function CardCarrusel<T extends PropsComp>({
+function CardCarruselImages<T extends PropsComp>({
   carouselId,
   cardsData,
   cardsPerSlide,
   CardComponent,
   titleCarrusel,
+  viewCountSlides,
   marginTop,
   marginBottom,
-}: CardCarruselProps<T>): JSX.Element {
+}: CardCarruselImagesProps<T>): JSX.Element {
   const [indicatorPage, setIndicatorPage] = useState<number>(1);
 
   let slideCount = Math.trunc(cardsData.length / cardsPerSlide);
@@ -37,12 +39,11 @@ function CardCarrusel<T extends PropsComp>({
   let arr: Array<string> = [];
   let top: number = marginTop ? marginTop : 0;
   let bottom: number = marginBottom ? marginBottom : 0;
-  console.log(slideCount, "slideCount");
+
   const carouselIndicators = () => {
     let buttonArray: JSX.Element[] = [];
     for (let i = 0; i < slideCount; i++) {
       arr.push(`${i}`);
-
       buttonArray.push(
         <button
           type="button"
@@ -63,7 +64,8 @@ function CardCarrusel<T extends PropsComp>({
       carouselCards.push(
         <CardComponent
           key={`card${i * cardsPerSlide + j}`}
-          product={cardsData[j]}
+          image={cardsData[j].image}
+          text={cardsData[j].text}
         ></CardComponent>
       );
     }
@@ -133,7 +135,7 @@ function CardCarrusel<T extends PropsComp>({
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
       </button>
       <div className="countSlideCarrusel">
-        <h5>
+        <h5 style={viewCountSlides ? { display: "none" } : { display: "" }}>
           {indicatorPage} de {slideCount}
         </h5>
       </div>
@@ -141,4 +143,4 @@ function CardCarrusel<T extends PropsComp>({
   );
 }
 
-export default CardCarrusel;
+export default CardCarruselImages;
