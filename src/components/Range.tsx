@@ -9,6 +9,8 @@ interface RangeProps {
   max: number;
   min: number;
   cb?: () => void;
+  sendFilterPrice: boolean;
+  setSendFilterPrice: React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface Values {
   values: Array<number> | number;
@@ -30,6 +32,9 @@ const Range: React.FunctionComponent<RangeProps> = ({
   setMin,
   max,
   min,
+  sendFilterPrice,
+  setSendFilterPrice,
+  cb,
 }) => {
   const [val, setVal] = useState<Values["values"]>([min, max]);
   let minimum = typeof val != "number" ? val[0] : val;
@@ -86,7 +91,15 @@ const Range: React.FunctionComponent<RangeProps> = ({
           </div>
         </div>
         <div className="mt-0 p-0 ">
-          <BtnSee textRender="Filtrar" marginTop={0} marginBottom={10} />
+          <BtnSee
+            textRender="Filtrar Por Precio"
+            key={"btnFilterRange"}
+            marginTop={10}
+            marginBottom={15}
+            dispatchAction={cb}
+            estateAction={sendFilterPrice}
+            padding={3}
+          />
         </div>
         <div>
           <FilterRange

@@ -24,13 +24,13 @@ const Home: React.FunctionComponent<HomeProps> = ({
   return (
     <>
       {!seeCollection ? (
-        <div>
+        <div className="cnt-wrapper">
           {firstProducts.length > 0 && (
             <ContainerCardHome products={firstProducts} />
           )}
         </div>
       ) : (
-        <div>
+        <div className="cnt-wrapper">
           {products.length > 0 && <ContainerCardHome products={products} />}
         </div>
       )}

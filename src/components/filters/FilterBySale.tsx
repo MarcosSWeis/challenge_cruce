@@ -2,27 +2,49 @@ import React from "react";
 import { FilterState } from "../../interfaces/filter";
 
 interface FilterBySaleProps {
-    setDiscount: React.Dispatch<React.SetStateAction<FilterState>>
-    setDiscountSearch: React.Dispatch<React.SetStateAction<boolean>>
-    setQuotasSearch: React.Dispatch<React.SetStateAction<boolean>>
+  setDiscount: React.Dispatch<React.SetStateAction<FilterState>>;
+  discount: FilterState;
 }
 
-const FilterBySale: React.FunctionComponent<FilterBySaleProps> = ({ setDiscount, setDiscountSearch, setQuotasSearch }) => {
-    return (
-        <select className="form-select" name="discount" aria-label="Default select example" onChange={(event) => {
-            setDiscount({ value: Number(event.target.value), name: event.target.name })
-            setDiscountSearch(true)
-            setQuotasSearch(false)
-        }}>
-            <option  >Filtrar por descuento</option>
-            <option value={10}>hasta %10</option>
-            <option value={20}>hasta %20</option>
-            <option value={30}>hasta %30</option>
-            <option value={40}>hasta %40</option>
-            <option value={50}>hasta %50</option>
-            <option value={60}>hasta %60</option>
-        </select>
-    );
+export interface ArrDiscount {
+  value: number;
+  option: string;
 }
+
+const FilterBySale: React.FunctionComponent<FilterBySaleProps> = ({
+  setDiscount,
+  discount,
+}) => {
+  let arrDiscount: Array<ArrDiscount> = [
+    { value: 10, option: "0 - 10 %" },
+    { value: 20, option: "10 - 20 %" },
+    { value: 30, option: "20 - 30 %" },
+    { value: 40, option: "30 - 40 %" },
+    { value: 50, option: "40 - 50 %" },
+  ];
+  return (
+    <select
+      className="form-select"
+      name="discount"
+      aria-label="Default select example"
+      onChange={(event) => {
+        setDiscount({
+          value: Number(event.target.value),
+          name: event.target.name,
+        });
+      }}
+    >
+      <option value={0}>Filtrar por descuento</option>
+      {arrDiscount.map((disc) => (
+        <option
+          value={disc.value}
+          selected={disc.value === discount.value ? true : false}
+        >
+          {disc.option}
+        </option>
+      ))}
+    </select>
+  );
+};
 
 export default FilterBySale;

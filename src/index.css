@@ -683,6 +683,8 @@ tr {
 
 .container-sub-filter {
   margin-top: 1rem;
+  max-width: 500px;
+  margin: auto;
 }
 
 /*REGISTER FORM*/
@@ -746,7 +748,6 @@ tr {
   }
   50% {
     opacity: 0.5;
-    right: 25%;
   }
   100% {
     opacity: 1;
@@ -865,6 +866,13 @@ tr {
 }
 
 @media screen and (min-width: 1600px) {
+  .cnt-wrapper,
+  .container-brands,
+  .containerTimerSale {
+    width: 80%;
+    margin: auto;
+    padding: 1rem;
+  }
   .title-clock-timer {
     display: flex;
     max-width: 400px;
