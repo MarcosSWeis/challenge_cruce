@@ -13,9 +13,9 @@ const ToyRoutes: React.FunctionComponent<ToyRoutesProps> = () => {
     <Routes>
       <Route path="/" element={<PageToy />}>
         <Route path="funko/:page" element={<PageFunko />} />
-        <Route path="funko/filter" element={<ResultFilter />} />
-
         <Route path="dinosaurio/:page" element={<PageDinosaur />} />
+        <Route path="funko/filter" element={<ResultFilter />} />
+        <Route path="dinosaurio/filter" element={<ResultFilter />} />
       </Route>
     </Routes>
   );

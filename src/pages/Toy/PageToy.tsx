@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import BtnSee from "../../components/buttons/BtnSee";
+import ContainerButton, {
+  RadioButtons,
+} from "../../components/buttons/ContainerButton";
 import Filter from "../../components/filters/Filter";
 import FilterByQuota from "../../components/filters/FilterByQuota";
 import FilterBySale from "../../components/filters/FilterBySale";
 import Range from "../../components/Range";
 import ToyNavbar from "../../components/toyNavBar/ToyNavBar";
 import { FilterState } from "../../interfaces/filter";
+import { Toy } from "../../interfaces/products";
 
 interface PageToyProps {}
 
@@ -18,23 +22,27 @@ const PageToy: React.FunctionComponent<PageToyProps> = () => {
   const [quotas, setCuotas] = useState<FilterState>(INITIAL_STATE_FILTER);
   const [discount, setDiscount] = useState<FilterState>(INITIAL_STATE_FILTER);
   const [filterSelected, setFilterSelected] = useState<number>(-1);
+  const [valueButton, setValueButton] = useState<string>("Funko");
+
   const navigate = useNavigate();
 
-  const redirectFilterPrice = () => {
-    navigate(`/juguetes/funko/filter?min=${min}&max=${max}&page=${1}`);
-  };
+  const radioButtons: Array<RadioButtons> = [
+    { text: "Funko", value: Toy.FUNKO },
+    { text: "Dinosaurio", value: Toy.DINOSAURIO },
+  ];
 
   const sendFilter = () => {
     navigate(
-      `/juguetes/funko/filter?min=${min}&max=${max}&quota=${
+      `/juguetes/${valueButton.toLowerCase()}/filter?min=${min}&max=${max}&quota=${
         quotas.value
-      }&discount=${discount.value}&page=${1}`
+      }&discount=${discount.value}&toy=${valueButton.toLowerCase()}&page=${1}`
     );
   };
+
   return (
     <>
       <ToyNavbar />
-      <div className="d-flex">
+      <div className="ctn-top-filters">
         <Range
           setMax={setMax}
           setMin={setMin}
@@ -42,8 +50,17 @@ const PageToy: React.FunctionComponent<PageToyProps> = () => {
           min={min}
           sendFilterPrice={sendFilterPrice}
           setSendFilterPrice={setSendFilterPrice}
-          cb={redirectFilterPrice}
         />
+        <div>
+          <h3 className="text-center">Tipo de juguete</h3>
+          <div>
+            <ContainerButton
+              radioBtns={radioButtons}
+              setValueButton={setValueButton}
+              key={radioButtons[0].value + radioButtons[1].value}
+            />
+          </div>
+        </div>
         <div className="">
           <Filter setFilterSelected={setFilterSelected} />
 

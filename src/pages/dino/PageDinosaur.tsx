@@ -25,95 +25,18 @@ const PageDinosaur: React.FunctionComponent<DinosaurProps> = () => {
   const limit = 3;
   let currentPage: number = Number(page);
   const [response, setResponse] = useState<Paginate>();
-  const [dinos, setDinos] = useState<Array<Product> | undefined>(undefined);
-  const [quotasSearch, setQuotasSearch] = useState<boolean>(false);
-  const [discountSearch, setDiscountSearch] = useState<boolean>(false);
-  const [max, setMax] = useState<number>(10000);
-  const [min, setMin] = useState<number>(1);
-  const [quotas, setCuotas] = useState<FilterState>(INITIAL_STATE_FILTER);
-  const [discount, setDiscount] = useState<FilterState>(INITIAL_STATE_FILTER);
-  const [filterSelected, setFilterSelected] = useState<number>(-1);
-  const [sendFilterPrice, setSendFilterPrice] = useState<boolean>(false);
-
-  // const getDinos = () => {
-  //     let dinos: Array<Product> | undefined = getProductsByCategory({ toy: Toy.DINOSAURIO })
-  //     let filteredProducts: Array<Product> = filterByPrice(min, max, dinos)
-  //     setDinos(dinos)
-  //     setResponse(getAllProductsPaginates(limit, currentPage, filteredProducts))
-  // }
 
   const getDinos = () => {
-    if (filterSelected === -1) {
-      let dinos: Array<Product> | undefined = getProductsByCategory({
-        toy: Toy.DINOSAURIO,
-      });
-      let filteredProducts: Array<Product> = filterByPrice(min, max, dinos);
-      setDinos(dinos);
-      setResponse(
-        getAllProductsPaginates(limit, currentPage, filteredProducts)
-      );
-    }
-    if (filterSelected !== -1 && quotasSearch) {
-      //SELECCIONO FILTRAR POR CUOTAS
-      let dinos: Array<Product> | undefined = getProductsByCategory({
-        toy: Toy.DINOSAURIO,
-      });
-      let filteredProducts: Array<Product> | undefined;
-      if (dinos) {
-        filteredProducts = getFilterByQuota(quotas.value, dinos);
-      }
-      setDinos(dinos);
-      if (filteredProducts) {
-        setResponse(
-          getAllProductsPaginates(limit, currentPage, filteredProducts)
-        );
-      }
-    }
-
-    if (filterSelected !== -1 && discountSearch) {
-      //SELECCIONO FILTRAR POR DESCUENTOS
-      console.log("  //SELECCIONO FILTRAR POR DESCUENTOS");
-      let dinos: Array<Product> | undefined = getProductsByCategory({
-        toy: Toy.DINOSAURIO,
-      });
-      let filteredProducts: Array<Product> | undefined;
-      if (dinos) {
-        filteredProducts = getFilterDiscount(discount.value, dinos);
-      }
-      setDinos(dinos);
-      if (filteredProducts) {
-        setResponse(
-          getAllProductsPaginates(limit, currentPage, filteredProducts)
-        );
-      }
-    }
+    let dinos: Array<Product> | undefined = getProductsByCategory({
+      toy: Toy.DINOSAURIO,
+    });
+    dinos && setResponse(getAllProductsPaginates(limit, currentPage, dinos));
   };
-
   useEffect(() => {
     getDinos();
-  }, [
-    page,
-    max,
-    min,
-    quotasSearch,
-    discountSearch,
-    quotas,
-    discount,
-    filterSelected,
-  ]);
+  }, [page]);
   return (
     <>
-      <div>
-        <Range
-          setMax={setMax}
-          setMin={setMin}
-          max={max}
-          min={min}
-          sendFilterPrice={sendFilterPrice}
-          setSendFilterPrice={setSendFilterPrice}
-        />
-        <Filter setFilterSelected={setFilterSelected} />
-      </div>
       {response && (
         <div>
           <ContainerCardHome products={response.products} key={"pageDinos"} />

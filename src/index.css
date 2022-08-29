@@ -754,6 +754,53 @@ tr {
     right: 0;
   }
 }
+.btnregister {
+  background-color: #7d5a94;
+  border: #7d5a94 solid 1px;
+}
+/* RADIO BUTTONS*/
+/* .form-check input {
+  border-color: #d7b1d7;
+  background-color: red;
+} */
+
+.form-check input:checked,
+.form-check label::before {
+  background-color: #7d5a94;
+  border-color: #7d5a94;
+}
+
+/*Buttons carrusel*/
+.carousel-control-prev {
+  background: #c8c8c8;
+  color: #000000;
+  position: absolute;
+  top: 95%;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 1px solid #c8c8c8;
+}
+
+.carousel-control-next {
+  background: #c8c8c8;
+  color: #000000;
+  position: absolute;
+  top: 95%;
+  left: 10%;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 1px solid #c8c8c8;
+}
+
+#funkos-card-carousel .carousel-inner #cnt-card-carrursel {
+  flex-direction: column !important;
+}
+
+#brands-card-carrusel .carousel-inner div {
+  flex-direction: inherit !important;
+}
 
 @media screen and (min-width: 720px) {
   .container-logo-nav-bar {
@@ -772,7 +819,7 @@ tr {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  .carousel-control-prev {
+  /* .carousel-control-prev {
     background: #c8c8c8;
     color: #000000;
     position: absolute;
@@ -781,14 +828,14 @@ tr {
     height: 30px;
     border-radius: 100%;
     border: 1px solid #c8c8c8;
-  }
+  } */
   .container-logo-user {
     margin-top: 0.5rem;
   }
   .container-logo-user div {
     margin-top: 8px;
   }
-  .carousel-control-next {
+  /* .carousel-control-next {
     background: #c8c8c8;
     color: #000000;
     position: absolute;
@@ -798,7 +845,7 @@ tr {
     height: 30px;
     border-radius: 100%;
     border: 1px solid #c8c8c8;
-  }
+  } */
 
   .containerTimerSale {
     display: list-item;
@@ -841,17 +888,26 @@ tr {
   .none {
     display: none;
   }
-}
+  .ctn-top-filters {
+    width: 90%;
+    display: flex !important;
+    justify-content: center;
+  }
 
-.btnregister {
-  background-color: #7d5a94;
-  border: #7d5a94 solid 1px;
+  #funkos-card-carousel .carousel-inner #cnt-card-carrursel {
+    flex-direction: inherit !important;
+  }
+
+  #dinos-card-carousel .carousel-inner div {
+    flex-direction: inherit !important;
+  }
 }
 
 @media screen and (min-width: 992px) {
   .disable-serarch-bottom {
     display: none !important;
   }
+
   .containerCartNavBar {
     position: absolute;
     right: 0;

@@ -25,6 +25,20 @@ const ResultFilter: React.FunctionComponent<ResultFilterProps> = () => {
   const max = Number(searchParams.get("max"));
   const quota = Number(searchParams.get("quota"));
   const discount = Number(searchParams.get("discount"));
+  const toy = searchParams.get("toy");
+  let toyType: Toy;
+  switch (toy) {
+    case Toy.FUNKO.toLowerCase():
+      {
+        toyType = Toy.FUNKO;
+      }
+      break;
+    case Toy.DINOSAURIO.toLowerCase():
+      {
+        toyType = Toy.DINOSAURIO;
+      }
+      break;
+  }
   const limit = 6;
 
   console.log(page, "page");
@@ -37,7 +51,7 @@ const ResultFilter: React.FunctionComponent<ResultFilterProps> = () => {
     let filteredProducts: Array<Product> = filterByPrice(
       min,
       max,
-      getProductsByCategory({ toy: Toy.FUNKO })
+      getProductsByCategory({ toy: toyType })
     );
 
     if (quota !== 0) {

@@ -19,16 +19,12 @@ const Paginator: React.FunctionComponent<PaginatorProps> = ({
   //si no viene con un string vacio quiere decir que trae un query
   if (location.search !== "") {
     let pageIndex = location.search.length - 1;
-    page = Number(location.search.slice(-1, pageIndex + 1));
-    console.log(page);
     pathComplete = location.pathname + location.search;
+    page = Number(location.search.slice(-1, pageIndex + 1));
     pathName = pathComplete.slice(0, pathComplete.length - 1);
-    console.log(pathName, "pathName");
   } else {
-    const loc = location.pathname.lastIndexOf("/");
-    console.log(loc, "loc");
-    pathName = location.pathname.slice(0, loc + 1);
-    console.log(pathName, "pathName");
+    const pageIndex = location.pathname.lastIndexOf("/");
+    pathName = location.pathname.slice(0, pageIndex + 1);
   }
 
   const renderPages = () => {

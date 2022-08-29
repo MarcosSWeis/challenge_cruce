@@ -78,7 +78,10 @@ function CardCarrusel<T extends PropsComp>({
           key={`item${i}`}
           className={i === 0 ? "carousel-item active  " : "carousel-item  "}
         >
-          <div className="d-flex flex-column flex-md-row justify-content-around align-items-center">
+          <div
+            className="d-flex flex-column flex-md-row justify-content-around align-items-center"
+            id="cnt-card-carrursel"
+          >
             {carouselCards(i)}
           </div>
         </div>

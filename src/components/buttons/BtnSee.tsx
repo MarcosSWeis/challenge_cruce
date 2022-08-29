@@ -11,6 +11,7 @@ interface BtnSeeProps<T> {
   textColor?: string;
   bgColor?: string;
   padding?: number;
+  display?: string;
 }
 interface TypeDispatcher {
   bol: boolean;
@@ -26,6 +27,7 @@ function BtnSee<T extends TypeDispatcher>({
   textColor,
   bgColor,
   padding = 0,
+  display = "flex",
 }: BtnSeeProps<T>): JSX.Element {
   return (
     <div
@@ -33,6 +35,7 @@ function BtnSee<T extends TypeDispatcher>({
       style={{
         marginTop: `${marginTop}px`,
         marginBottom: `${marginBottom}px`,
+        display: `${display}`,
       }}
     >
       <button

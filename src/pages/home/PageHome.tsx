@@ -89,6 +89,7 @@ const PageHome: React.FunctionComponent<PageHomeProps> = () => {
       behavior: "smooth",
     });
   };
+  let widthScreen = window.screen.width;
 
   useEffect(() => {
     getFunkos();
@@ -125,7 +126,7 @@ const PageHome: React.FunctionComponent<PageHomeProps> = () => {
       <CardCarrusel
         carouselId="funkos-card-carousel"
         cardsData={funkos}
-        cardsPerSlide={4}
+        cardsPerSlide={widthScreen < 720 ? 1 : 4}
         CardComponent={ProductCard}
         titleCarrusel={"Novedades"}
         marginTop={50}
