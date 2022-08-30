@@ -3,12 +3,12 @@ import { Route, Routes } from "react-router-dom";
 import NotFound from "../components/notfound/NotFound";
 
 import ShoppingCart from "../components/shppingCart/ShoppingCart";
-import PageHome from "../pages/home/PageHome";
-import PageLogin from "../pages/login/PageLogin";
-import PageRegister from "../pages/register/PageRegister";
-import PageSearch from "../pages/search/PageSearch";
-import PrivareRouter from "./PrivateRouter";
-import ToyRoutes from "./ToyRoutes";
+import PageHome from "../pages/home/Page-home";
+import PageLogin from "../pages/login/Page-login";
+import PageRegister from "../pages/register/Page-register";
+import PageSearch from "../pages/search/Page-search";
+import PrivareRouter from "./Private-router";
+import ToyRoutes from "./Toy-routes";
 
 interface PublicRoutesProps {}
 

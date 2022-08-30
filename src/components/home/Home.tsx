@@ -4,8 +4,8 @@ import { Product } from "../../models/Product";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import ContainerCardHome from "./ContainerCardHome";
-import { DB } from "../../services/createdDB";
-import { IMAGES_DINO } from "../../services/importImagesDinosaurios";
+import { DB } from "../../services/created-db";
+import { IMAGES_DINO } from "../../services/import-images-dinosaurios";
 import BtnSee from "../buttons/BtnSee";
 
 interface HomeProps {
@@ -15,24 +15,15 @@ interface HomeProps {
 interface HomeStates {
   products: Array<Product>;
 }
-const Home: React.FunctionComponent<HomeProps> = ({
-  seeCollection,
-  products,
-}) => {
+const Home: React.FunctionComponent<HomeProps> = ({ seeCollection, products }) => {
   const firstProducts = products.slice(0, 10);
 
   return (
     <>
       {!seeCollection ? (
-        <div className="cnt-wrapper">
-          {firstProducts.length > 0 && (
-            <ContainerCardHome products={firstProducts} />
-          )}
-        </div>
+        <div className="cnt-wrapper">{firstProducts.length > 0 && <ContainerCardHome products={firstProducts} />}</div>
       ) : (
-        <div className="cnt-wrapper">
-          {products.length > 0 && <ContainerCardHome products={products} />}
-        </div>
+        <div className="cnt-wrapper">{products.length > 0 && <ContainerCardHome products={products} />}</div>
       )}
     </>
   );

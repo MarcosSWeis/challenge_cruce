@@ -1,23 +1,20 @@
-import React, { useEffect } from 'react';
-import { AppProvider } from './context/AppProvider';
-import { Product } from './models/Product';
-import AppRouter from './router/AppRouter';
-import { createDB } from './services/createdDB';
+import React, { useEffect } from "react";
+import { AppProvider } from "./context/AppProvider";
+import { Product } from "./models/Product";
+import AppRouter from "./router/App-router";
+import { createDB } from "./services/created-db";
 
-interface ApplicationProps {
-
-}
+interface ApplicationProps {}
 
 const Application: React.FunctionComponent<ApplicationProps> = () => {
+  createDB();
 
-    createDB()
-
-    //como el AppProvider el de la capa mas afuera necesito crear/instanciar la "base de datos" antes 
-    return (
-        <AppProvider>
-            <AppRouter />
-        </AppProvider>
-    );
-}
+  //como el AppProvider el de la capa mas afuera necesito crear/instanciar la "base de datos" antes
+  return (
+    <AppProvider>
+      <AppRouter />
+    </AppProvider>
+  );
+};
 
 export default Application;

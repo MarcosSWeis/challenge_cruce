@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "../components/footer/Footer";
 import AlertTouch from "../components/AlertTouch";
 import Home from "../components/home/Home";
-import NavBar from "../components/navBar/NavBar";
+import NavBar from "../components/nav-bar/NavBar";
 import Search from "../components/Search";
-import PageHome from "../pages/home/PageHome";
-import PublicRoutes from "../routes/PublicRoutes";
+import PageHome from "../pages/home/Page-home";
+import PublicRoutes from "../routes/Public-routes";
 
 interface IAppRouterProps {}
 

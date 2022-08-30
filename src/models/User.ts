@@ -10,20 +10,12 @@ export class User implements IUser {
   password: string;
   role: Role;
   shoppingCart: Array<Product>;
-  constructor(
-    id: number,
-    name: string,
-    lastName: string,
-    email: string,
-    password: string,
-    shoppingCart: Array<Product>,
-    role: Role
-  ) {
+  constructor(id: number, name: string, lastName: string, email: string, password: string, shoppingCart: Array<Product>, role: Role) {
     this.id = id;
     this.name = name;
     this.lastName = lastName;
     this.email = email;
-    this.password = this.setEncryptPassword(password);
+    this.password = password;
     this.role = role;
     this.shoppingCart = shoppingCart;
   }
@@ -39,8 +31,8 @@ export class User implements IUser {
     this.shoppingCart = products;
   }
 
-  setEncryptPassword(password: string): string {
-    return hashSync(password, 10);
+  setEncryptPassword(password: string): void {
+    this.password = hashSync(password, 10);
   }
   getDecryptPassword(password: string, hashedPassword: string): boolean {
     return compareSync(password, hashedPassword);
@@ -58,10 +50,6 @@ export class User implements IUser {
   // setEmail(email: string): void {
   //     this.email = email
   // }
-  setPassword(password: string): void {
-    this.password = password;
-  }
-
   // //------***   GETTERS   ***------//
   // getId(): number | undefined {
   //     return this.id

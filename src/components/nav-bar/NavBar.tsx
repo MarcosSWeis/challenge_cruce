@@ -4,7 +4,7 @@ import { Link, useNavigate, Navigate, useLocation } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import cart from "../../assets/shopping_cart.svg";
 import { AppContext } from "../../context/AppContext";
-import PageSearch from "../../pages/search/PageSearch";
+import PageSearch from "../../pages/search/Page-search";
 import Search from "../Search";
 interface NavBarProps {}
 
@@ -49,11 +49,7 @@ const NavBar: React.FunctionComponent<NavBarProps> = () => {
   ];
 
   return (
-    <section
-      className="sticky-top bg-white"
-      style={{ backgroundColor: "#EAEBF3" }}
-      id="navBar"
-    >
+    <section className="sticky-top bg-white" style={{ backgroundColor: "#EAEBF3" }} id="navBar">
       <nav className="navbar navbar-expand-lg p-3 border-bottom container_navbar ">
         <div className="container-fluid ">
           <button
@@ -69,37 +65,13 @@ const NavBar: React.FunctionComponent<NavBarProps> = () => {
           </button>
 
           <Link to={"/"} className="container-logo-nav-bar">
-            <img
-              src={logo}
-              alt="Logo ong"
-              height={"40px"}
-              className="m-auto none"
-            />
+            <img src={logo} alt="Logo ong" height={"40px"} className="m-auto none" />
           </Link>
           <div className="containerCartNavBar">
-            <img
-              src={cart}
-              alt="Logo ong"
-              height={"40px"}
-              style={{ transform: "scale(0.6)" }}
-              onClick={handlerCart}
-            />
-            {user && (
-              <h6
-                style={
-                  user.shoppingCart.length < 10
-                    ? { right: "-0.3rem" }
-                    : { right: "-1rem" }
-                }
-              >
-                {user.shoppingCart.length}
-              </h6>
-            )}
+            <img src={cart} alt="Logo ong" height={"40px"} style={{ transform: "scale(0.6)" }} onClick={handlerCart} />
+            {user && <h6 style={user.shoppingCart.length < 10 ? { right: "-0.3rem" } : { right: "-1rem" }}>{user.shoppingCart.length}</h6>}
           </div>
-          <div
-            className="collapse navbar-collapse  "
-            id="navbarSupportedContent"
-          >
+          <div className="collapse navbar-collapse  " id="navbarSupportedContent">
             <div className="container-menu">
               <ul className="navbar-nav me-auto">
                 {menu.map((item: Item) => (

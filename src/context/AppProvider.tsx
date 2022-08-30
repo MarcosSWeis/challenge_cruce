@@ -6,6 +6,7 @@ import { User } from "../models/User";
 import { userReducer } from "./userReducer";
 import { getProductoByTitle, getUserByEmail } from "../services/db-service";
 import { type } from "os";
+import { createModuleResolutionCache } from "typescript";
 
 interface AppProviderProps {
   children: JSX.Element | JSX.Element[];
@@ -56,7 +57,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     //     }
     // })
     let user = getUserByEmail(email);
-
+    console.log(user, "user en provider");
     if (!user) {
       UserDispatch({
         type: "user",
@@ -70,7 +71,10 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         },
       });
     } else {
-      if (user.getDecryptPassword(password, user.password)) {
+      console.log(user.password);
+      console.log(password);
+      console.log(user.getDecryptPassword("123456789", "$2a$10$iySFY9jVYQn2ewFpWqdRa.qCPMQBDkFbARxhZEEljaU7q1gbaEfGy"));
+      if (!user.getDecryptPassword(password, user.password)) {
         UserDispatch({
           type: "user",
           payload: {

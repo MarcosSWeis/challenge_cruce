@@ -1,10 +1,10 @@
 import React from "react";
 import { Outlet, Route, Routes } from "react-router-dom";
-import PageDinosaur from "../pages/dino/PageDinosaur";
-import PageFunko from "../pages/funko/PageFunko";
-import PageFilter from "../pages/PageFilter";
-import ResultFilter from "../pages/resultFilterRange/ResultFilter";
-import PageToy from "../pages/Toy/PageToy";
+import PageDinosaur from "../pages/dino/Page-dinosaur";
+import PageFunko from "../pages/funko/Page-funko";
+import PageFilter from "../pages/page-filter/Page-filter";
+import ResultFilter from "../pages/result-filter-range/Result-filter";
+import PageToy from "../pages/Toy/Page-toy";
 
 interface ToyRoutesProps {}
 

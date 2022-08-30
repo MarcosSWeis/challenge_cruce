@@ -8,14 +8,11 @@ import { Product } from "../../models/Product";
 import { Toy } from "../../interfaces/products";
 import Timer from "../../components/timer/Timer";
 
-import {
-  getAllProducts,
-  getProductsByCategory,
-} from "../../services/db-service";
+import { getAllProducts, getProductsByCategory } from "../../services/db-service";
 import Carrusel, { imgSlides } from "../../components/carrusel/Carrusel";
-import { getImagesBrands } from "../../services/importBrans";
+import { getImagesBrands } from "../../services/import-brans";
 import CardCarruselImages from "../../components/carrusel/CardCarruselImages";
-import CardImages from "../../components/CardImages/CardImages";
+import CardImages from "../../components/card-images/CardImages";
 import BtnUp from "../../components/buttons/BtnUp";
 
 interface PageHomeProps {}
@@ -54,8 +51,7 @@ const PageHome: React.FunctionComponent<PageHomeProps> = () => {
   function getBrands() {
     let array_one_brands: Array<imgSlides> = getImagesBrands();
     let array_two_brands: Array<imgSlides> = getImagesBrands();
-    let finalArray: Array<imgSlides> =
-      array_one_brands.concat(array_two_brands);
+    let finalArray: Array<imgSlides> = array_one_brands.concat(array_two_brands);
     setBrands(finalArray);
   }
   function getHeightHomePage() {
@@ -110,6 +106,7 @@ const PageHome: React.FunctionComponent<PageHomeProps> = () => {
         textClose="Cerrar Colección"
         textColor="white"
         bgColor="F26522"
+        padding={3}
       />
       <div className="container-brands">
         <CardCarruselImages
