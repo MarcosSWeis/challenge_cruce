@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "../components/footer/Footer";
-import AlertTouch from "../components/AlertTouch";
+import AlertTouch from "../components/Alert-touch";
 import Home from "../components/home/Home";
-import NavBar from "../components/nav-bar/NavBar";
+import NavBar from "../components/nav-bar/Nav-bar";
 import Search from "../components/Search";
 import PageHome from "../pages/home/Page-home";
 import PublicRoutes from "../routes/Public-routes";

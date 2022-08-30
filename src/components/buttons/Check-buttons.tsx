@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Toy } from "../../interfaces/products";
-import { RadioButtons } from "./ContainerButton";
+import { RadioButtons } from "./Container-button";
 
 interface CheckButtonsProps extends RadioButtons {
   text: string;
@@ -8,11 +8,7 @@ interface CheckButtonsProps extends RadioButtons {
   setValueButton: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const CheckButtons: React.FunctionComponent<CheckButtonsProps> = ({
-  text,
-  value,
-  setValueButton,
-}) => {
+const CheckButtons: React.FunctionComponent<CheckButtonsProps> = ({ text, value, setValueButton }) => {
   return (
     <div className="form-check">
       <input

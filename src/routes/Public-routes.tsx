@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import NotFound from "../components/notfound/NotFound";
+import NotFound from "../components/notfound/Not-found";
 
-import ShoppingCart from "../components/shppingCart/ShoppingCart";
+import ShoppingCart from "../components/shpping-cart/Shopping-cart";
 import PageHome from "../pages/home/Page-home";
 import PageLogin from "../pages/login/Page-login";
 import PageRegister from "../pages/register/Page-register";

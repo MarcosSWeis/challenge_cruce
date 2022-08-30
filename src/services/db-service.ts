@@ -1,5 +1,5 @@
 import axios, { Axios, AxiosResponse } from "axios";
-import { UpdatedUserLogged } from "../interfaces/appContextProps";
+import { UpdatedUserLogged } from "../interfaces/app-context-props";
 import { CategoryProduct, Toy } from "../interfaces/products";
 import { Paginate } from "../models/Paginate";
 import { Product } from "../models/Product";

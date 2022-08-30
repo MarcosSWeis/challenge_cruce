@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
-import ContainerCardHome from "../../components/home/ContainerCardHome";
+import ContainerCardHome from "../../components/home/Container-card-home";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { AppContext } from "../../context/AppContext";
+import { AppContext } from "../../context/App-context";
 import { useLocation } from "react-router-dom";
 interface PageSearchProps {}
 

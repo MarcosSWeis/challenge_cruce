@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import svg_discount from "../../assets/vector_discount.svg";
-import { AppContext } from "../../context/AppContext";
-import { UpdatedUserLogged } from "../../interfaces/appContextProps";
+import { AppContext } from "../../context/App-context";
+import { UpdatedUserLogged } from "../../interfaces/app-context-props";
 import { Product } from "../../models/Product";
 import { User } from "../../models/User";
 import { addToCart } from "../../services/db-service";
@@ -40,10 +40,7 @@ export default function ProductCard({ product }: CardProps) {
     }
   }
 
-  function verifyUserToAddCart(
-    user?: User,
-    updatedUserLogged?: UpdatedUserLogged
-  ) {
+  function verifyUserToAddCart(user?: User, updatedUserLogged?: UpdatedUserLogged) {
     if (user && updatedUserLogged) {
       addToCart(product.id, user, updatedUserLogged);
     } else {
@@ -71,9 +68,7 @@ export default function ProductCard({ product }: CardProps) {
             <h6 className="category">{product.category.toy}</h6>
           </Link>
         ) : (
-          <Link
-            to={`/juguetes/${product.category.school?.toLocaleLowerCase()}/1`}
-          >
+          <Link to={`/juguetes/${product.category.school?.toLocaleLowerCase()}/1`}>
             <h6 className="category">{product.category.school}</h6>
           </Link>
         )}
@@ -81,9 +76,7 @@ export default function ProductCard({ product }: CardProps) {
           <p className="card-title">{product.title}</p>
         </Link>
         <p className="quota">{product.quotas} Cuotas s/interés de</p>
-        <h5 className="priceQuota">
-          ${product.getPriceForQuota(product.price.price, product.quotas)}
-        </h5>
+        <h5 className="priceQuota">${product.getPriceForQuota(product.price.price, product.quotas)}</h5>
         <div className="containerPrice">
           Final:
           {product.price.discount === 0 ? (

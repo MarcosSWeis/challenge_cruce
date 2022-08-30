@@ -1,12 +1,12 @@
 import { count } from "console";
 import React, { useContext, useEffect, useState } from "react";
-import { AppContext } from "../../context/AppContext";
+import { AppContext } from "../../context/App-context";
 import { CategoryProduct, QuotaProduct } from "../../interfaces/products";
 import { Product } from "../../models/Product";
 import Alert from "../../services/alert-service";
 import { saveDB } from "../../services/created-db";
 import { cartItemSeparator, getTotalPriceCart } from "../../services/user-service";
-import CardShoppingCart from "./CardShoppingCart";
+import CardShoppingCart from "./Card-shopping-cart";
 
 interface ShoppingCartProps {}
 export interface countShoppingCart {
@@ -44,7 +44,7 @@ const ShoppingCart: React.FunctionComponent<ShoppingCartProps> = () => {
 
   function getPositionsToDelete(id: number) {
     if (user) {
-      let newCart = user.shoppingCart.filter((product) => product.id !== id);
+      let newCart = user.shoppingCart.filter((product: Product) => product.id !== id);
       user.setShoppingCart(newCart);
       updatedUserLogged(user); //actualiza el usuario con su nuevo array de productos
       saveDB(); //guarda esos cambios en localSorage
@@ -54,12 +54,12 @@ const ShoppingCart: React.FunctionComponent<ShoppingCartProps> = () => {
   function addMoreInCart(id: number, countProd: number) {
     if (user) {
       //productos anterios , para no perderlos, el prudcto que quiere lo dejo para agregar la cantida que queria depues
-      let oldProducts: Array<Product> = user.shoppingCart.filter((product) => product.id !== id);
+      let oldProducts: Array<Product> = user.shoppingCart.filter((product: Product) => product.id !== id);
       console.log(oldProducts, "oldProducts");
       //si queiso añadir porductos desde su carrito, indica que en su carrito esta lo que quiere aumentar
       //recorro el for tantas veces como productos añadio y le aniado ese producto
       for (let i = 0; i < countProd; i++) {
-        let product = user.shoppingCart.find((product) => product.id == id);
+        let product = user.shoppingCart.find((product: Product) => product.id == id);
         console.log(product, "product");
         if (product) {
           oldProducts.push(product);

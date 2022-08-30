@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { CardProps } from "../home/ProductCard";
+import { CardProps } from "../home/Product-card";
 import { imgSlides } from "./Carrusel";
 
-interface CardCarruselImagesProps<T> {
+interface CardCarruselProps<T> {
   carouselId: string;
-  cardsData: Array<imgSlides>;
+  cardsData: Array<any>;
   cardsPerSlide: number;
   titleCarrusel?: string;
-  CardComponent: React.FunctionComponent<PropsComp["propsImgesBrands"]>;
-  viewCountSlides?: boolean;
+  CardComponent: React.FunctionComponent<PropsComp["propsProdCard"]>;
   marginTop?: number;
   marginBottom?: number;
 }
 interface PropsComp {
-  propsImgesBrands: imgSlides;
+  propsProdCard: CardProps;
 }
 
 interface EstateCardProduct {
@@ -22,16 +21,15 @@ interface EstateCardProduct {
     totalSlider: number;
   };
 }
-function CardCarruselImages<T extends PropsComp>({
+function CardCarrusel<T extends PropsComp>({
   carouselId,
   cardsData,
   cardsPerSlide,
   CardComponent,
   titleCarrusel,
-  viewCountSlides,
   marginTop,
   marginBottom,
-}: CardCarruselImagesProps<T>): JSX.Element {
+}: CardCarruselProps<T>): JSX.Element {
   const [indicatorPage, setIndicatorPage] = useState<number>(1);
 
   let slideCount = Math.trunc(cardsData.length / cardsPerSlide);
@@ -39,11 +37,12 @@ function CardCarruselImages<T extends PropsComp>({
   let arr: Array<string> = [];
   let top: number = marginTop ? marginTop : 0;
   let bottom: number = marginBottom ? marginBottom : 0;
-
+  console.log(slideCount, "slideCount");
   const carouselIndicators = () => {
     let buttonArray: JSX.Element[] = [];
     for (let i = 0; i < slideCount; i++) {
       arr.push(`${i}`);
+
       buttonArray.push(
         <button
           type="button"
@@ -61,13 +60,7 @@ function CardCarruselImages<T extends PropsComp>({
   const carouselCards = (i: number) => {
     let carouselCards = [];
     for (let j = 0; j < cardsPerSlide; j++) {
-      carouselCards.push(
-        <CardComponent
-          key={`card${i * cardsPerSlide + j}`}
-          image={cardsData[j].image}
-          text={cardsData[j].text}
-        ></CardComponent>
-      );
+      carouselCards.push(<CardComponent key={`card${i * cardsPerSlide + j}`} product={cardsData[j]}></CardComponent>);
     }
     return carouselCards;
   };
@@ -76,11 +69,8 @@ function CardCarruselImages<T extends PropsComp>({
     let carouselItems = [];
     for (let i = 0; i < slideCount; i++) {
       let item = (
-        <div
-          key={`item${i}`}
-          className={i === 0 ? "carousel-item active  " : "carousel-item  "}
-        >
-          <div className="d-flex flex-column flex-md-row justify-content-around align-items-center">
+        <div key={`item${i}`} className={i === 0 ? "carousel-item active  " : "carousel-item  "}>
+          <div className="d-flex flex-column flex-md-row justify-content-around align-items-center" id="cnt-card-carrursel">
             {carouselCards(i)}
           </div>
         </div>
@@ -102,10 +92,7 @@ function CardCarruselImages<T extends PropsComp>({
         <h2>{titleCarrusel}</h2>
       </div>
       <div className="carousel-indicators">{carouselIndicators()}</div>
-      <div
-        style={{ height: "fit-content" }}
-        className="carousel-inner py-5 pt-1"
-      >
+      <div style={{ height: "fit-content" }} className="carousel-inner py-5 pt-1">
         {carouselItems()}
       </div>
       <button
@@ -114,9 +101,7 @@ function CardCarruselImages<T extends PropsComp>({
         data-bs-target={`#${carouselId}`}
         data-bs-slide="prev"
         onClick={() => {
-          indicatorPage <= slideCount && indicatorPage > 1
-            ? setIndicatorPage(indicatorPage - 1)
-            : setIndicatorPage(10);
+          indicatorPage <= slideCount && indicatorPage > 1 ? setIndicatorPage(indicatorPage - 1) : setIndicatorPage(10);
         }}
       >
         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -127,15 +112,13 @@ function CardCarruselImages<T extends PropsComp>({
         data-bs-target={`#${carouselId}`}
         data-bs-slide="next"
         onClick={() => {
-          indicatorPage < slideCount
-            ? setIndicatorPage(indicatorPage + 1)
-            : setIndicatorPage(1);
+          indicatorPage < slideCount ? setIndicatorPage(indicatorPage + 1) : setIndicatorPage(1);
         }}
       >
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
       </button>
       <div className="countSlideCarrusel">
-        <h5 style={viewCountSlides ? { display: "none" } : { display: "" }}>
+        <h5>
           {indicatorPage} de {slideCount}
         </h5>
       </div>
@@ -143,4 +126,4 @@ function CardCarruselImages<T extends PropsComp>({
   );
 }
 
-export default CardCarruselImages;
+export default CardCarrusel;

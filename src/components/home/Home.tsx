@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import { AppContext } from "../../context/AppContext";
+import { AppContext } from "../../context/App-context";
 import { Product } from "../../models/Product";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import ContainerCardHome from "./ContainerCardHome";
+import ContainerCardHome from "./Container-card-home";
 import { DB } from "../../services/created-db";
 import { IMAGES_DINO } from "../../services/import-images-dinosaurios";
-import BtnSee from "../buttons/BtnSee";
+import BtnSee from "../buttons/Btn-see";
 
 interface HomeProps {
   seeCollection: boolean;

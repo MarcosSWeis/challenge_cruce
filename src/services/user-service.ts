@@ -1,4 +1,4 @@
-import { countShoppingCart, TotalsPay } from "../components/shppingCart/ShoppingCart";
+import { countShoppingCart, TotalsPay } from "../components/shpping-cart/Shopping-cart";
 import { IUser, Role } from "../interfaces/user";
 import { Product } from "../models/Product";
 import { User } from "../models/User";

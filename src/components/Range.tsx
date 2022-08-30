@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
-import BtnSee from "./buttons/BtnSee";
+import BtnSee from "./buttons/Btn-see";
 
 interface RangeProps {
   setMax: React.Dispatch<React.SetStateAction<number>>;
@@ -27,15 +27,7 @@ const FilterRange = styled(Slider)(() => ({
   },
 }));
 
-const Range: React.FunctionComponent<RangeProps> = ({
-  setMax,
-  setMin,
-  max,
-  min,
-  sendFilterPrice,
-  setSendFilterPrice,
-  cb,
-}) => {
+const Range: React.FunctionComponent<RangeProps> = ({ setMax, setMin, max, min, sendFilterPrice, setSendFilterPrice, cb }) => {
   const [val, setVal] = useState<Values["values"]>([min, max]);
   let minimum = typeof val != "number" ? val[0] : val;
   let maximum = typeof val != "number" ? val[1] : val;
@@ -91,14 +83,7 @@ const Range: React.FunctionComponent<RangeProps> = ({
           </div>
         </div>
         <div className="mt-0 p-0 ">
-          <BtnSee
-            textRender="Filtrar Por Precio"
-            key={"btnFilterRange"}
-            marginTop={10}
-            marginBottom={15}
-            padding={3}
-            display={"none"}
-          />
+          <BtnSee textRender="Filtrar Por Precio" key={"btnFilterRange"} marginTop={10} marginBottom={15} padding={3} display={"none"} />
         </div>
         <div>
           <FilterRange

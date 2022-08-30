@@ -3,7 +3,7 @@ import Menu from "./Menu";
 import { Link, useNavigate, Navigate, useLocation } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import cart from "../../assets/shopping_cart.svg";
-import { AppContext } from "../../context/AppContext";
+import { AppContext } from "../../context/App-context";
 import PageSearch from "../../pages/search/Page-search";
 import Search from "../Search";
 interface NavBarProps {}

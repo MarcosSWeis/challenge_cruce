@@ -1,6 +1,6 @@
 import { withFormik, FormikProps, FormikErrors, Form, Field } from "formik";
 import { Link } from "react-router-dom";
-import { Redirect } from "../../interfaces/appContextProps";
+import { Redirect } from "../../interfaces/app-context-props";
 import { IUserState } from "../../interfaces/redusers";
 interface FormValues {
   email: string;
@@ -13,48 +13,20 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
   const { touched, errors, isSubmitting, message } = props;
   return (
     <div className="tab-content">
-      <div
-        className="tab-pane fade show active"
-        id="pills-login"
-        role="tabpanel"
-        aria-labelledby="tab-login"
-      >
+      <div className="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
         <Form>
           <div className="form-outline mb-4">
-            <Field
-              type="email"
-              name="email"
-              id="email"
-              className="form-control"
-              placeholder="Email"
-            />
-            {touched.email && errors.email && (
-              <div className="text-danger">{errors.email}</div>
-            )}
+            <Field type="email" name="email" id="email" className="form-control" placeholder="Email" />
+            {touched.email && errors.email && <div className="text-danger">{errors.email}</div>}
           </div>
           <div className="form-outline mb-4">
-            <Field
-              type="password"
-              name="password"
-              id="password"
-              className="form-control"
-              placeholder="Contraseña"
-            />
-            {touched.password && errors.password && (
-              <div className="text-danger">{errors.password}</div>
-            )}
+            <Field type="password" name="password" id="password" className="form-control" placeholder="Contraseña" />
+            {touched.password && errors.password && <div className="text-danger">{errors.password}</div>}
           </div>
           <div className="row mb-4">
             <div className="col d-flex justify-content-center">
               <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  defaultValue={""}
-                  id="form2Example31"
-                  checked
-                  placeholder=""
-                />
+                <input className="form-check-input" type="checkbox" defaultValue={""} id="form2Example31" checked placeholder="" />
                 <label className="form-check-label" htmlFor="form2Example31">
                   {" "}
                   Remember me{" "}

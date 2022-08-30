@@ -1,6 +1,6 @@
-import { dbProducts } from "../db/DbProducts";
-import { mockProducts } from "../mock/products/mock-products";
-import { mockUsers } from "../mock/users/mock-users";
+import { dbProducts } from "../db/db-products";
+import { mockProducts } from "../mocks/products/mock-products";
+import { mockUsers } from "../mocks/users/mock-users";
 import { instanceProduct } from "./product-service";
 import { instanceUser, instanceUserWithHashing } from "./user-service";
 

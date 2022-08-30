@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import BtnSee from "../../components/buttons/BtnSee";
-import CardProduct2 from "../../components/CardProduct2";
-import CardCarrusel from "../../components/carrusel/CardCarrusel";
+import BtnSee from "../../components/buttons/Btn-see";
+import CardProduct2 from "../../components/Card-product-2";
+import CardCarrusel from "../../components/carrusel/Card-carrusel";
 import Home from "../../components/home/Home";
-import ProductCard from "../../components/home/ProductCard";
+import ProductCard from "../../components/home/Product-card";
 import { Product } from "../../models/Product";
 import { Toy } from "../../interfaces/products";
 import Timer from "../../components/timer/Timer";
@@ -11,9 +11,9 @@ import Timer from "../../components/timer/Timer";
 import { getAllProducts, getProductsByCategory } from "../../services/db-service";
 import Carrusel, { imgSlides } from "../../components/carrusel/Carrusel";
 import { getImagesBrands } from "../../services/import-brans";
-import CardCarruselImages from "../../components/carrusel/CardCarruselImages";
-import CardImages from "../../components/card-images/CardImages";
-import BtnUp from "../../components/buttons/BtnUp";
+import CardCarruselImages from "../../components/carrusel/Card-carrusel-images";
+import CardImages from "../../components/card-images/Card-images";
+import BtnUp from "../../components/buttons/Btn-up";
 
 interface PageHomeProps {}
 

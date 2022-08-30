@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FilterState } from "../../interfaces/filter";
-import FilterByQuota from "./FilterByQuota";
-import FilterBySale from "./FilterBySale";
+import FilterByQuota from "./Filter-by-quota";
+import FilterBySale from "./Filter-by-sale";
 
 interface FilterProps {
   setFilterSelected: React.Dispatch<React.SetStateAction<number>>;
@@ -9,9 +9,7 @@ interface FilterProps {
 export interface Filters {
   text: string;
 }
-const Filter: React.FunctionComponent<FilterProps> = ({
-  setFilterSelected,
-}) => {
+const Filter: React.FunctionComponent<FilterProps> = ({ setFilterSelected }) => {
   const filters: Array<Filters> = [
     {
       text: "Filtrar por cuotas",
@@ -27,11 +25,7 @@ const Filter: React.FunctionComponent<FilterProps> = ({
           <i className="bi bi-funnel"></i>{" "}
         </label>
 
-        <select
-          className="form-select"
-          aria-label="Default select example"
-          onChange={(event) => setFilterSelected(Number(event.target.value))}
-        >
+        <select className="form-select" aria-label="Default select example" onChange={(event) => setFilterSelected(Number(event.target.value))}>
           <option selected value={-1}>
             {"   Filtrar"}
           </option>

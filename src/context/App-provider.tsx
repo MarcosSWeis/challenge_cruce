@@ -1,9 +1,9 @@
 import { useReducer } from "react";
-import { AppContext } from "./AppContext";
-import { searchReducer } from "./searchReducer";
+import { AppContext } from "./App-context";
+import { searchReducer } from "./search-reducer";
 import { ISearchState, IUserState } from "../interfaces/redusers";
 import { User } from "../models/User";
-import { userReducer } from "./userReducer";
+import { userReducer } from "./user-reducer";
 import { getProductoByTitle, getUserByEmail } from "../services/db-service";
 import { type } from "os";
 import { createModuleResolutionCache } from "typescript";

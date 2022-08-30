@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import { Product } from "../../models/Product";
 import Alert from "../../services/alert-service";
-import { countShoppingCart } from "./ShoppingCart";
+import { countShoppingCart } from "./Shopping-cart";
 
 interface CardShoppingCartProps {
   product: countShoppingCart;

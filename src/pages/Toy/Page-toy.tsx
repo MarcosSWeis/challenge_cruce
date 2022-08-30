@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import BtnSee from "../../components/buttons/BtnSee";
-import ContainerButton, { RadioButtons } from "../../components/buttons/ContainerButton";
+import BtnSee from "../../components/buttons/Btn-see";
+import ContainerButton, { RadioButtons } from "../../components/buttons/Container-button";
 import Filter from "../../components/filters/Filter";
-import FilterByQuota from "../../components/filters/FilterByQuota";
-import FilterBySale from "../../components/filters/FilterBySale";
+import FilterByQuota from "../../components/filters/Filter-by-quota";
+import FilterBySale from "../../components/filters/Filter-by-sale";
 import Range from "../../components/Range";
 import ToyNavbar from "../../components/toy-nav-bar/Toy-nav-bar";
 import { FilterState } from "../../interfaces/filter";

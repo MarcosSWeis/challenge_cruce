@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import ContainerCardHome from "../../components/home/ContainerCardHome";
+import ContainerCardHome from "../../components/home/Container-card-home";
 import Paginator from "../../components/Paginator";
 import { QuotaProduct, Toy } from "../../interfaces/products";
 import { Paginate } from "../../models/Paginate";

@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Filter from "../../components/filters/Filter";
-import ContainerCardHome from "../../components/home/ContainerCardHome";
+import ContainerCardHome from "../../components/home/Container-card-home";
 import Paginator from "../../components/Paginator";
 import Range from "../../components/Range";
 import { FilterState } from "../../interfaces/filter";
 import { Toy } from "../../interfaces/products";
 import { Paginate } from "../../models/Paginate";
 import { Product } from "../../models/Product";
-import {
-  getAllProductsPaginates,
-  getProductsByCategory,
-} from "../../services/db-service";
-import {
-  filterByPrice,
-  getFilterByQuota,
-  getFilterDiscount,
-} from "../../services/product-service";
+import { getAllProductsPaginates, getProductsByCategory } from "../../services/db-service";
+import { filterByPrice, getFilterByQuota, getFilterDiscount } from "../../services/product-service";
 
 interface DinosaurProps {}
 const INITIAL_STATE_FILTER = { value: 0, name: "" };
@@ -40,11 +33,7 @@ const PageDinosaur: React.FunctionComponent<DinosaurProps> = () => {
       {response && (
         <div>
           <ContainerCardHome products={response.products} key={"pageDinos"} />
-          <Paginator
-            currentPage={currentPage}
-            pageCount={response?.total_pages}
-            justify={""}
-          />
+          <Paginator currentPage={currentPage} pageCount={response?.total_pages} justify={""} />
         </div>
       )}
     </>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Toy } from "../../interfaces/products";
-import CheckButtons from "./CheckButtons";
+import CheckButtons from "./Check-buttons";
 
 interface ContainerButtonProps {
   radioBtns: Array<RadioButtons>;
@@ -11,19 +11,11 @@ export interface RadioButtons {
   text: string;
   value: Toy;
 }
-const ContainerButton: React.FunctionComponent<ContainerButtonProps> = ({
-  radioBtns,
-  setValueButton,
-}) => {
+const ContainerButton: React.FunctionComponent<ContainerButtonProps> = ({ radioBtns, setValueButton }) => {
   return (
     <div>
       {radioBtns.map((button, index) => (
-        <CheckButtons
-          text={button.text}
-          value={button.value}
-          key={button.text + index}
-          setValueButton={setValueButton}
-        />
+        <CheckButtons text={button.text} value={button.value} key={button.text + index} setValueButton={setValueButton} />
       ))}
     </div>
   );

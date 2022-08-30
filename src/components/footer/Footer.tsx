@@ -1,8 +1,8 @@
 import React from "react";
 import { TbSocNet, TbGeneral } from "../../interfaces/table";
-import BtnSee from "../buttons/BtnSee";
-import TableDescGeneral from "./TableDescGeneral";
-import TableSocialNetwork from "./TableSocialNetwork";
+import BtnSee from "../buttons/Btn-see";
+import TableDescGeneral from "./Table-desc-general";
+import TableSocialNetwork from "./Table-social-network";
 import afip from "../../assets/footer/afip.svg";
 import ahora_18 from "../../assets/footer/ahora_18.svg";
 import cace from "../../assets/footer/cace.svg";
@@ -55,13 +55,7 @@ const Footer: React.FunctionComponent<FooterProps> = () => {
           <h3></h3>
           <form action="" id="fromContact">
             <div className="input-group mb-3">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Email"
-                aria-label="Recipient's username"
-                aria-describedby="basic-addon2"
-              />
+              <input type="text" className="form-control" placeholder="Email" aria-label="Recipient's username" aria-describedby="basic-addon2" />
             </div>
           </form>
           <BtnSee bgColor="white" textColor="black" textRender="ENVIAR" />
@@ -70,11 +64,7 @@ const Footer: React.FunctionComponent<FooterProps> = () => {
       <div className="containerTableFooter">
         <table className="table" id="TableSocialNetwork">
           {socialNetWorks.map((socNet: TbSocNet) => (
-            <TableSocialNetwork
-              nameSocNet={socNet.nameSocNet}
-              link={socNet.link}
-              classNameIcon={socNet.classNameIcon}
-            />
+            <TableSocialNetwork nameSocNet={socNet.nameSocNet} link={socNet.link} classNameIcon={socNet.classNameIcon} />
           ))}
         </table>
         <table className="table" id="TableDescGeneral">
