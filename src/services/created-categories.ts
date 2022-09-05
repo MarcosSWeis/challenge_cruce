@@ -6,5 +6,4 @@ import { instanceCategory, instanceSubCategory } from "./product-service";
 export let CCategories: Categories;
 export function createCategories(): void {
   CCategories = new Categories(instanceCategory(mockCategories), instanceSubCategory(mockSubCategoriesToy));
-  console.log(CCategories);
 }

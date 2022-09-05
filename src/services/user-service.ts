@@ -1,6 +1,7 @@
 import { countShoppingCart, TotalsPay } from "../components/shpping-cart/Shopping-cart";
 import { IUser, Role } from "../interfaces/user";
 import { PaginatesUser } from "../models/Paginate-user";
+
 import { Product } from "../models/Product";
 import { User } from "../models/User";
 import { DB } from "./created-db";

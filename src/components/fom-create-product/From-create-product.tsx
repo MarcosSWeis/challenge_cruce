@@ -43,8 +43,6 @@ const FormProductCreate = () => {
   const inputFile = React.useRef<HTMLInputElement | null>(null);
 
   function handlerFiles(files: FileList | null): void {
-    console.log(files, "files");
-
     let errors: number = 0;
     if (files && files.length > 0) {
       for (let i = 0; i < files.length; i++) {
@@ -81,9 +79,8 @@ const FormProductCreate = () => {
     } else if (!idsCategories.includes(Number(categorySelected.value))) {
       errors.category = "Debe ingresar una categoria valida";
     }
-    console.log(validations.error, validations?.errorText);
+
     if (inputFile.current && inputFile.current.value === "") {
-      console.log(inputFile.current.value, "ffafsfafa");
       errors.file = "El campo imagen es requerido";
     } else if (validations.error) {
       //si es false queire decir que hay errores, lo niego y entra para setear el error
@@ -110,18 +107,13 @@ const FormProductCreate = () => {
           validate={validate}
           onSubmit={async (values, { resetForm }) => {
             //con el id de la categoria y el id de la sub categoria enceuntro la categoria a asignar del array de subcategorías
-            console.log(Number(categorySelected.value), "Number(categorySelected.value)");
-            console.log(Number(values.subCategory), " Number(values.subCategory)");
 
             let subCategory = getSubCategotyByIds(Number(categorySelected.value), Number(values.subCategory));
             const category = getCategoryById(Number(categorySelected.value));
-            console.log(subCategory, "subCategory");
-            console.log(category, "category");
 
             if (subCategory && files && category) {
               setLoader(true);
               let images: Array<string> = await uploadImage(files);
-              console.log(images, "images");
               //el id puede ser cualquier numero ya que la db se encarga de buscar el ultimo (id + 1) de su array y asignarleo al nuevo producto
               const product = new Product(
                 0,
@@ -180,7 +172,6 @@ const FormProductCreate = () => {
                     id="category"
                     className="form-control"
                     onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
-                      console.log(event.target);
                       setCategorySelected({ value: event.target.value, status: true });
                     }}
                   >
@@ -223,7 +214,7 @@ const FormProductCreate = () => {
                     className="form-control"
                     onChange={(event) => {
                       handlerFiles(event.target.files);
-                      console.log(event.target.files);
+
                       setFIles(event.target.files);
                     }}
                   />

@@ -21,7 +21,6 @@ const NavBar: React.FunctionComponent<NavBarProps> = () => {
   const user = userLogged.userLogged;
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(userLogged);
 
   function handlerCart() {
     user

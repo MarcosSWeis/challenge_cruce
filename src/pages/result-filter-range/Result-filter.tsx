@@ -24,10 +24,8 @@ const ResultFilter: React.FunctionComponent<ResultFilterProps> = () => {
   function filter() {
     let filteredProducts: Array<Product> = [];
     if (toy) {
-      console.log(toy, "toytyyttyt");
       const subCat = getSubCategoryByText(toy);
       if (subCat) {
-        console.log(subCat);
         filteredProducts = filterByPrice(min, max, getProductsBySubCategory(subCat));
       }
     }

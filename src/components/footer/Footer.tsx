@@ -105,7 +105,6 @@ const Footer: React.FunctionComponent<FooterProps> = () => {
                 setLoading(true);
                 try {
                   const response = await sendEmail(email);
-                  console.log(response);
                 } catch (err) {
                   console.log(err);
                 }

@@ -37,7 +37,6 @@ const UserList: React.FunctionComponent<UserListProps> = () => {
   });
   const limit = 10;
   useEffect(() => {
-    console.log("vuelvo a ejecutar");
     getData();
   }, [page, searchTerm, sortDirection, sortByColumn, deletedUser, loading]);
 

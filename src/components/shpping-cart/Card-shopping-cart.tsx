@@ -23,7 +23,6 @@ const CardShoppingCart: React.FunctionComponent<CardShoppingCartProps> = ({ prod
   }
 
   function handlerChangeCount(event: React.ChangeEvent<HTMLInputElement>) {
-    console.log(event.target.value, event.target.name);
     setCountProd(Number(event.target.value));
   }
 
