@@ -12,3 +12,9 @@ In the project directory, you can run:
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+### All user passwords are 123456789
+
+### Roles
+a) admin = 1 
+b) standar = 2  
