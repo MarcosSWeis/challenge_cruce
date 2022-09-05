@@ -59,13 +59,13 @@ const UserList: React.FunctionComponent<UserListProps> = () => {
 
   const handleEditFormSubmit = (values: DataEditUser) => {
     //values edited
-    const editedUser: DataEditUser = {
+    /*     const editedUser: DataEditUser = {
       id: values.id,
       name: values.name,
       lastName: values.lastName,
       email: values.email,
       role: values.role,
-    };
+    }; */
     //envio la data a mi funcion para editar
     const user = getUserById(values.id);
     if (user) {

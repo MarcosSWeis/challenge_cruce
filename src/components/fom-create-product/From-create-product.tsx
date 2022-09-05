@@ -22,14 +22,15 @@ interface InitialValues {
   subCategory: string;
   file: string;
 }
-interface ErrrorImage {
+export interface ErrrorImage {
   error: boolean;
   errorText?: string;
 }
-interface CategorySelected {
+export interface CategorySelected {
   value: string;
   status: boolean;
 }
+export const filesAcepted: Array<string> = ["image/jpeg", "image/jpg", "image/svg", "image/png"];
 const FormProductCreate = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState<Array<Category>>([]);
@@ -40,7 +41,6 @@ const FormProductCreate = () => {
   const [files, setFIles] = useState<FileList | null>(null);
   const [validations, setValidations] = useState<ErrrorImage>({ error: false });
   const inputFile = React.useRef<HTMLInputElement | null>(null);
-  let filesAcepted: Array<string> = ["image/jpeg", "image/jpg", "image/svg", "image/png", "image/svg+xml"];
 
   function handlerFiles(files: FileList | null): void {
     console.log(files, "files");

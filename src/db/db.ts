@@ -116,7 +116,7 @@ export class dbProducts {
   //borrar un producto
   deleteProduct(id: number): void {
     let index = this.products.findIndex((product) => product.id === id);
-    this.products = this.products.splice(index, 1);
+    this.products.splice(index, 1);
   }
   /// save method
   //tipo produsct o user
@@ -145,11 +145,6 @@ export class dbProducts {
   getTableFilterUser(sortByColum: string, sortDirection: string): Array<User> {
     console.log(sortDirection, "en la funcion");
     let short = this.users.sort((a: User, b: User): number => {
-      console.log(sortByColum, "sortByColum");
-      console.log(sortDirection, "sortDirection");
-      console.log(sortDirection == "DESC");
-      console.log(sortDirection == "ASC");
-      //a.[sortByColum] si pudiera hacer esto reduciria lineas de codigo
       if (sortByColum == "id") {
         if (sortDirection == "DESC") {
           return a.id - b.id;
@@ -192,6 +187,91 @@ export class dbProducts {
         }
         if (sortDirection == "ASC") {
           return a.email.localeCompare(b.email);
+        }
+      }
+
+      return 0;
+    });
+
+    return short;
+  }
+
+  getTableFilterProducts(sortByColum: string, sortDirection: string): Array<Product> {
+    console.log(sortDirection, "en la funcion");
+    let short = this.products.sort((a: Product, b: Product): number => {
+      console.log(sortByColum, "sortByColum");
+      console.log(sortDirection, "sortDirection");
+      console.log(sortDirection == "DESC");
+      console.log(sortDirection == "ASC");
+      //a.[sortByColum] si pudiera hacer esto reduciria lineas de codigo
+      if (sortByColum == "id") {
+        if (sortDirection == "DESC") {
+          return a.id - b.id;
+        }
+        if (sortDirection == "ASC") {
+          return b.id - a.id;
+        }
+      }
+
+      if (sortByColum == "title") {
+        if (sortDirection == "DESC") {
+          return b.title.localeCompare(a.title);
+        }
+        if (sortDirection == "ASC") {
+          return a.title.localeCompare(b.title);
+        }
+      }
+
+      if (sortByColum == "price") {
+        if (sortDirection == "DESC") {
+          return a.price.price - b.price.price;
+        }
+        if (sortDirection == "ASC") {
+          return b.price.price + -a.price.price;
+        }
+      }
+
+      if (sortByColum == "categoryId") {
+        if (sortDirection == "DESC") {
+          return a.category.id - b.category.id;
+        }
+        if (sortDirection == "ASC") {
+          return b.category.id + -a.category.id;
+        }
+      }
+
+      if (sortByColum == "category") {
+        if (sortDirection == "DESC") {
+          return b.category.category.localeCompare(a.category.category);
+        }
+        if (sortDirection == "ASC") {
+          return a.category.category.localeCompare(b.category.category);
+        }
+      }
+      if (sortByColum == "subCategoryId") {
+        if (sortDirection == "DESC") {
+          return a.subCategory.id - b.subCategory.id;
+        }
+        if (sortDirection == "ASC") {
+          return b.subCategory.id + -a.subCategory.id;
+        }
+      }
+
+      if (sortByColum == "subCategory") {
+        if (sortDirection == "DESC") {
+          return b.subCategory.subCategory.localeCompare(a.subCategory.subCategory);
+        }
+        if (sortDirection == "ASC") {
+          return a.subCategory.subCategory.localeCompare(b.subCategory.subCategory);
+        }
+      }
+
+      if (sortByColum == "quotas") {
+        if (sortDirection == "DESC") {
+          return a.quotas - b.quotas;
+        }
+        if (sortDirection == "ASC") {
+          return b.quotas + -a.quotas;
         }
       }
 

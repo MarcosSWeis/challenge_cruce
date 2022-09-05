@@ -54,6 +54,9 @@ export class Product implements IProduct {
   setSubCategory(subCategory: SubCategory): void {
     this.subCategory = subCategory;
   }
+  setImages(images: Array<string>): void {
+    this.images = images;
+  }
 
   setLoadImage(images: Array<string> | string): void {
     if (typeof images !== "string") {

@@ -28,9 +28,9 @@ const UserRow: React.FunctionComponent<UserRowProps> = ({ user, handleEditUser, 
               setShow(true);
               setEditFormData(user);
             }}
-            className="btn btn-light text-white mx-1 display-1 "
+            className="btn btn-light text-white mx-1 display-1 btn-edit-user"
           >
-            <i className="bi bi-pencil-fill h3"></i>
+            <i className="bi bi-pencil-fill h3 "></i>
             Editar
           </button>
           <button
@@ -51,7 +51,7 @@ const UserRow: React.FunctionComponent<UserRowProps> = ({ user, handleEditUser, 
                 }
               );
             }}
-            className="btn btn-primary text-white mx-1 display-1"
+            className="btn btn-primary text-white mx-1 display-1 btn-delete-user"
           >
             <i className="bi bi-trash3 h3"></i>
             Eliminar

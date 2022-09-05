@@ -6,6 +6,7 @@ import { Category } from "../models/Category";
 import { Product } from "../models/Product";
 import { SubCategory } from "../models/Sub-category";
 import { SubCategoryToy } from "../models/Sub-category-toy";
+import { DB } from "./created-db";
 
 export function instanceProduct(seedProducts: Array<IProduct>): Array<Product> {
   let products: Array<Product> = [];
@@ -66,4 +67,12 @@ export function getFilterByQuota(quotas: QuotaProduct, products: Array<Product>)
 
 export function getFilterDiscount(discount: number, products: Array<Product>): Array<Product> {
   return products.filter((product) => product.price.discount <= discount && product.price.discount > discount - 10);
+}
+
+export function getTableFilterProducts(sortByColum: string, sortDirection: string): Array<Product> {
+  return DB.getTableFilterProducts(sortByColum, sortDirection);
+}
+
+export function deleteProduct(id: number): void {
+  DB.deleteProduct(id);
 }

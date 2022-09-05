@@ -25,7 +25,7 @@ const BackOffice: React.FunctionComponent<BackOfficeProps> = () => {
         <div>
           <h4 className="fs-2 mb-4">Productos</h4>
           <i className="fa-solid fa-rectangle-list fa-2xl"></i>
-          <button className="fs-2 px-4" onClick={() => navigate("productos")}>
+          <button className="fs-2 px-4" onClick={() => navigate("productos/1")}>
             Ir
           </button>
         </div>

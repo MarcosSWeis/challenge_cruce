@@ -477,6 +477,24 @@ tr {
 .card-body2 img {
   border-radius: 6px;
 }
+/* BTN DELETE  PRODIUCT*/
+.btn-delete-product {
+  background-color: #ec2227 !important;
+  border: #ec2227 solid 1px;
+}
+.btn-edit-product {
+  background-color: #45cccc !important;
+  border: #45cccc solid 1px;
+}
+/* BTN DELETE  USER*/
+.btn-delete-user {
+  background-color: #ec2227 !important;
+  border: #ec2227 solid 1px;
+}
+.btn-edit-user {
+  background-color: #45cccc !important;
+  border: #45cccc solid 1px;
+}
 
 /*carrusel dinos */
 
