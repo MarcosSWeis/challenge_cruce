@@ -26,8 +26,6 @@ const EditModalProduct: React.FunctionComponent<EditModalProductProps> = ({ edit
   const inputFile = React.useRef<HTMLInputElement | null>(null);
 
   function handlerFiles(files: FileList | null): void {
-    console.log(files, "files");
-
     let errors: number = 0;
     if (files && files.length > 0) {
       for (let i = 0; i < files.length; i++) {
@@ -56,7 +54,6 @@ const EditModalProduct: React.FunctionComponent<EditModalProductProps> = ({ edit
     getSubaterories();
   }, [files, loader]);
 
-  console.log(editFormData);
   const modelStyle = {
     backgroundColor: "rgba(0,0,0,0.3)",
     fontSize: "100%",
@@ -70,7 +67,7 @@ const EditModalProduct: React.FunctionComponent<EditModalProductProps> = ({ edit
     } else if (!idsCategories.includes(Number(categorySelected.value))) {
       errors.category = "Debe ingresar una categoria valida";
     }
-    console.log(validations.error, validations?.errorText);
+
     if (validations.error) {
       //si es false queire decir que hay errores, lo niego y entra para setear el error
       errors.file = validations.errorText;
@@ -115,7 +112,6 @@ const EditModalProduct: React.FunctionComponent<EditModalProductProps> = ({ edit
                       message: "",
                     },
                     () => {
-                      console.log(product);
                       handleEditFormSubmit(product);
                       Alert.success({ title: "Edicion", message: "El producto ha sido modificado" });
                     }
@@ -156,7 +152,6 @@ const EditModalProduct: React.FunctionComponent<EditModalProductProps> = ({ edit
                         id="category"
                         className="form-control"
                         onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
-                          console.log(event.target);
                           setCategorySelected({ value: event.target.value, status: true });
                         }}
                       >
@@ -199,7 +194,7 @@ const EditModalProduct: React.FunctionComponent<EditModalProductProps> = ({ edit
                         className="form-control"
                         onChange={(event) => {
                           handlerFiles(event.target.files);
-                          console.log(event.target.files);
+
                           setFIles(event.target.files);
                         }}
                       />

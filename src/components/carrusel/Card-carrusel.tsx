@@ -37,7 +37,7 @@ function CardCarrusel<T extends PropsComp>({
   let arr: Array<string> = [];
   let top: number = marginTop ? marginTop : 0;
   let bottom: number = marginBottom ? marginBottom : 0;
-  console.log(slideCount, "slideCount");
+
   const carouselIndicators = () => {
     let buttonArray: JSX.Element[] = [];
     for (let i = 0; i < slideCount; i++) {

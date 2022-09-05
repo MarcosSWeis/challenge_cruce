@@ -47,17 +47,8 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   const [userLogged, UserDispatch] = useReducer(userReducer, INITIAL_USER);
 
   const setUserLogged = (email: string, password: string) => {
-    console.log(email, password);
-    // UserDispatch({
-    //     type: 'user', payload: {
-    //         loading: true, user: undefined, errors: {
-    //             email: "",
-    //             password: ""
-    //         }
-    //     }
-    // })
     let user = getUserByEmail(email);
-    console.log(user, "user en provider");
+
     if (!user) {
       UserDispatch({
         type: "user",
@@ -71,9 +62,6 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         },
       });
     } else {
-      console.log(user.password);
-      console.log(password);
-      console.log(user.getDecryptPassword("123456789", "$2a$10$iySFY9jVYQn2ewFpWqdRa.qCPMQBDkFbARxhZEEljaU7q1gbaEfGy"));
       if (!user.getDecryptPassword(password, user.password)) {
         UserDispatch({
           type: "user",

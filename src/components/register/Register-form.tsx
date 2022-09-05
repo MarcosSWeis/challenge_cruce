@@ -97,7 +97,7 @@ export const RegisterForm = withFormik<RegisterFormProps, FormValues>({
 
   handleSubmit: (values: FormValues, { props }) => {
     let verifyEmail = getUserByEmail(values.email);
-    console.log(verifyEmail);
+
     if (!verifyEmail) {
       const id = getLastIdUsers();
       let user = new User(id, values.name, values.lastName, values.email, values.password, [], Role.standard);

@@ -10,7 +10,7 @@ export function uploadImage(files: FileList | null): Promise<Array<string>> {
   const config = {
     headers: { "X-Requested-With": "XMLHttpRequest" },
   };
-  console.log(files);
+
   const formData = new FormData();
   if (files) {
     for (let i = 0; i < files.length; i++) {
@@ -18,7 +18,7 @@ export function uploadImage(files: FileList | null): Promise<Array<string>> {
       formData.append("upload_preset", "nv9vffxy");
       formData.append("api_key", "393595837372787");
       formData.append("timestamp", (Date.now() / 1000).toString());
-      console.log(formData);
+
       imagesPromises.push(
         postPublic(url, formData, config).then((response: any) => {
           let url: string = response.secure_url;

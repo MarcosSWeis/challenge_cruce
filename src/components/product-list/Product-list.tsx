@@ -50,7 +50,6 @@ const ProductList: React.FunctionComponent<ProductListProps> = () => {
   });
   const limit = 10;
   useEffect(() => {
-    console.log("vuelvo a ejecutar");
     getData();
   }, [page, searchTerm, sortDirection, sortByColumn, deletedProduct, loading]);
 
@@ -77,7 +76,7 @@ const ProductList: React.FunctionComponent<ProductListProps> = () => {
   const handleEditFormSubmit = (values: DataEditProduct) => {
     //values edited
     //envio la data a mi funcion para editar
-    console.log(values, "value lvalues");
+
     const editedProduct: DataEditProduct = {
       id: values.id,
       title: values.title,
@@ -91,7 +90,7 @@ const ProductList: React.FunctionComponent<ProductListProps> = () => {
     };
     let category: Category | undefined = getCategoryById(Number(values.categoryId));
     let subcategory: SubCategory | undefined = getSubCategotyByIds(Number(values.categoryId), Number(values.subCategoryId));
-    console.log(category);
+
     const product = getProductById(values.id);
     if (product && category && subcategory) {
       product.setTitle(values.title);

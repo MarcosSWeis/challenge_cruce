@@ -20,7 +20,7 @@ export const sendEmail = async (email: string) => {
     templateID = process.env.REACT_APP_PUBLIC_EMAILJS_TEMPLATEID;
     publicKey = process.env.REACT_APP_PUBLIC_EMAILJS_API_KEY;
   }
-  console.log(publicKey, templateID);
+
   try {
     const response = await emailjs.send("default_service", templateID, { email }, publicKey);
     console.log(response);

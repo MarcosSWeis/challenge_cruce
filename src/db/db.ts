@@ -143,7 +143,6 @@ export class dbProducts {
     return this.users.find((user) => user.id === userId);
   }
   getTableFilterUser(sortByColum: string, sortDirection: string): Array<User> {
-    console.log(sortDirection, "en la funcion");
     let short = this.users.sort((a: User, b: User): number => {
       if (sortByColum == "id") {
         if (sortDirection == "DESC") {
@@ -197,12 +196,7 @@ export class dbProducts {
   }
 
   getTableFilterProducts(sortByColum: string, sortDirection: string): Array<Product> {
-    console.log(sortDirection, "en la funcion");
     let short = this.products.sort((a: Product, b: Product): number => {
-      console.log(sortByColum, "sortByColum");
-      console.log(sortDirection, "sortDirection");
-      console.log(sortDirection == "DESC");
-      console.log(sortDirection == "ASC");
       //a.[sortByColum] si pudiera hacer esto reduciria lineas de codigo
       if (sortByColum == "id") {
         if (sortDirection == "DESC") {
@@ -277,7 +271,7 @@ export class dbProducts {
 
       return 0;
     });
-    console.log(short, "sort sort sort sort");
+
     return short;
   }
 }

@@ -80,7 +80,6 @@ export const LoginForm = withFormik<MyFormProps, FormValues>({
   },
 
   handleSubmit: (values: FormValues, { props }) => {
-    console.log(props.userLogged);
     props.setUserLogged(values.email, values.password);
 
     // props.setErrors({})

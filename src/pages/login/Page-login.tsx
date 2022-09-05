@@ -11,9 +11,7 @@ const PageLogin: React.FunctionComponent<PageLoginProps> = () => {
   const { userLogged, setUserLogged } = useContext(AppContext);
   const navigate = useNavigate();
   const location = useLocation() as unknown as LocationProps;
-  if (location.state) {
-    console.log(location.state.from);
-  }
+
   const from = location.state?.from?.pathname || "/";
 
   const redirectNavigate = (to: string) => {

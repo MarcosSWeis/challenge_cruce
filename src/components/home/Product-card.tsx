@@ -47,7 +47,7 @@ export default function ProductCard({ product }: CardProps) {
       navigate("/login");
     }
   }
-  //console.log("Tiempo transcurrido:\n" + timeDiff + " ms");
+
   useEffect(() => {}, [difTime, userLogged]);
   return (
     <div className="card">

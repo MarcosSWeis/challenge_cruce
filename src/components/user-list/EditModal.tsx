@@ -11,7 +11,6 @@ interface EditModalProps {
   handleEditFormSubmit: (values: DataEditUser) => void;
 }
 const EditFormModal: React.FunctionComponent<EditModalProps> = ({ editFormData, setShow, handleEditFormSubmit }) => {
-  console.log(editFormData);
   const modelStyle = {
     backgroundColor: "rgba(0,0,0,0.3)",
     fontSize: "100%",

@@ -65,7 +65,6 @@ const Timer: React.FunctionComponent<TimerProps> = ({
     }, 1000);
   };
   const end = () => {
-    console.log();
     if (Number(hours) <= 0 && Number(min) <= 0 && Number(seg) <= 0 && Number(day) <= 0 && Number(seg) == 0) {
       clearTimeout(starTime);
     }
