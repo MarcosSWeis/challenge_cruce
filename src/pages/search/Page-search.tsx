@@ -17,7 +17,15 @@ const PageSearch: React.FunctionComponent<PageSearchProps> = () => {
 
   return (
     <div className="">
-      {loading && <Skeleton width={"100%"} />}
+      {loading && (
+        <div className="d-flex justify-content-between">
+          {/* //acomodar con css */}
+          <Skeleton width={"200px"} height={"400px"} />
+          <Skeleton width={"200px"} height={"400px"} />
+          <Skeleton width={"200px"} height={"400px"} />
+          <Skeleton width={"200px"} height={"400px"} />
+        </div>
+      )}
 
       {resultSearch != undefined && !loading ? (
         resultSearch?.length == 0 ? (

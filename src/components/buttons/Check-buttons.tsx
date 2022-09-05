@@ -1,10 +1,9 @@
 import React, { Fragment } from "react";
-import { Toy } from "../../interfaces/products";
 import { RadioButtons } from "./Container-button";
 
 interface CheckButtonsProps extends RadioButtons {
   text: string;
-  value: Toy;
+  value: string;
   setValueButton: React.Dispatch<React.SetStateAction<string>>;
 }
 

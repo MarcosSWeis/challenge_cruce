@@ -10,7 +10,7 @@ export default function ProductCard2({ product }: CardProduct2Props) {
       <div>
         <Link to={`/producto/${product.id}`}>
           <div className="card-body2">
-            <img src={product.image} className="card-img-top" alt="image" />
+            <img src={product.images[0]} width={"60px"} height={"60px"} className="card-img-top" alt="image" />
           </div>
         </Link>
       </div>

@@ -7,8 +7,8 @@ import FilterByQuota from "../../components/filters/Filter-by-quota";
 import FilterBySale from "../../components/filters/Filter-by-sale";
 import Range from "../../components/Range";
 import ToyNavbar from "../../components/toy-nav-bar/Toy-nav-bar";
+import { Toy } from "../../interfaces/categories";
 import { FilterState } from "../../interfaces/filter";
-import { Toy } from "../../interfaces/products";
 
 interface PageToyProps {}
 
@@ -20,20 +20,20 @@ const PageToy: React.FunctionComponent<PageToyProps> = () => {
   const [quotas, setCuotas] = useState<FilterState>(INITIAL_STATE_FILTER);
   const [discount, setDiscount] = useState<FilterState>(INITIAL_STATE_FILTER);
   const [filterSelected, setFilterSelected] = useState<number>(-1);
-  const [valueButton, setValueButton] = useState<string>("Funko");
+  const [valueButton, setValueButton] = useState<string>(Toy[0]);
 
   const navigate = useNavigate();
 
   const radioButtons: Array<RadioButtons> = [
-    { text: "Funko", value: Toy.FUNKO },
-    { text: "Dinosaurio", value: Toy.DINOSAURIO },
+    { text: "Funko", value: Toy[0] },
+    { text: "Dinosaurio", value: Toy[1] },
   ];
 
   const sendFilter = () => {
     navigate(
       `/juguetes/${valueButton.toLowerCase()}/filter?min=${min}&max=${max}&quota=${quotas.value}&discount=${
         discount.value
-      }&toy=${valueButton.toLowerCase()}&page=${1}`
+      }&toy=${valueButton}&page=${1}`
     );
   };
 
@@ -42,7 +42,7 @@ const PageToy: React.FunctionComponent<PageToyProps> = () => {
       <ToyNavbar />
       <div className="ctn-top-filters">
         <Range setMax={setMax} setMin={setMin} max={max} min={min} sendFilterPrice={sendFilterPrice} setSendFilterPrice={setSendFilterPrice} />
-        <div>
+        <div className="ctn-type-toy">
           <h3 className="text-center">Tipo de juguete</h3>
           <div>
             <ContainerButton radioBtns={radioButtons} setValueButton={setValueButton} key={radioButtons[0].value + radioButtons[1].value} />

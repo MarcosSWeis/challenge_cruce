@@ -52,24 +52,18 @@ export default function ProductCard({ product }: CardProps) {
   return (
     <div className="card">
       <Link to={`/producto/${product.id}`}>
-        <div>
-          <img src={product.image} className="card-img-top" alt="image" />
+        <div className="cnt-image-product">
+          <img src={product.images[0]} width={"230px"} height={"230px"} className="card-img-top" alt="image" />
         </div>
-        {product.price.discount ? (
-          <div className="card-body">
-            <img src={svg_discount} className="promo" alt="" />
-            <h3 className="discount">{product.price.discount}%</h3>
-          </div>
-        ) : null}
+        <div className={`card-body ${product.price.discount ? "" : "invisible"}`}>
+          <img src={svg_discount} className="promo" alt="" />
+          <h3 className="discount">{product.price.discount}%</h3>
+        </div>
       </Link>
       <div className="container_desc">
-        {product.category && product.category.toy ? (
-          <Link to={`/juguetes/${product.category.toy.toLocaleLowerCase()}/1`}>
-            <h6 className="category">{product.category.toy}</h6>
-          </Link>
-        ) : (
-          <Link to={`/juguetes/${product.category.school?.toLocaleLowerCase()}/1`}>
-            <h6 className="category">{product.category.school}</h6>
+        {product.category && product.subCategory.subCategory && (
+          <Link to={`/juguetes/${product.subCategory.subCategory.toLocaleLowerCase()}/1`}>
+            <h6 className="category">{product.subCategory.subCategory}</h6>
           </Link>
         )}
         <Link to={`/producto/${product.id}`}>

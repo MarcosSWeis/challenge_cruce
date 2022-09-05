@@ -1,4 +1,4 @@
-import { dbProducts } from "../db/db-products";
+import { dbProducts } from "../db/db";
 import { mockProducts } from "../mocks/products/mock-products";
 import { mockUsers } from "../mocks/users/mock-users";
 import { instanceProduct } from "./product-service";

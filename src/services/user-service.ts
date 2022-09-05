@@ -1,5 +1,6 @@
 import { countShoppingCart, TotalsPay } from "../components/shpping-cart/Shopping-cart";
 import { IUser, Role } from "../interfaces/user";
+import { PaginatesUser } from "../models/Paginate-user";
 import { Product } from "../models/Product";
 import { User } from "../models/User";
 import { DB } from "./created-db";
@@ -25,7 +26,7 @@ export function instanceUserWithHashing(seedUsers: Array<IUser>): Array<User> {
 
 export function cartItemSeparator(userCart: Array<Product>, filterCart: Array<countShoppingCart>): void {
   //recorro el carrito del usuario tantas veces como productos tenga
-  userCart.forEach(({ id, price, priceDiscount, title, description, image, category, quotas }, index) => {
+  userCart.forEach(({ id, price, priceDiscount, title, description, images, category, subCategory, quotas }, index) => {
     let discount = price.discount;
     let productPrice = discount === 0 ? price.price : priceDiscount;
     //por cada iteracion del forEach del carrito, recalizo un agrupamiento de productos por id y los actulizo en el indice correspondiente
@@ -45,8 +46,9 @@ export function cartItemSeparator(userCart: Array<Product>, filterCart: Array<co
         description: description,
         title: title,
         discount: discount,
-        image: image,
+        images: images,
         category: category,
+        subCategory: subCategory,
         quotas: quotas,
         priceXUd: productPrice,
       };
@@ -60,7 +62,7 @@ export function cartItemSeparator(userCart: Array<Product>, filterCart: Array<co
       filterCart[indexExistingItem].totalPrice = filterCart[indexExistingItem].totalPrice + price.price;
       filterCart[indexExistingItem].discount = discount;
       filterCart[indexExistingItem].title = title;
-      filterCart[indexExistingItem].image = image;
+      filterCart[indexExistingItem].images = images;
       filterCart[indexExistingItem].category = category;
       filterCart[indexExistingItem].quotas = quotas;
       filterCart[indexExistingItem].description = description;
@@ -91,4 +93,34 @@ export function addUserInDb(user: User): void {
 
 export function getUserByEmail(email: string): User | undefined {
   return DB.getUserByEmail(email);
+}
+
+export function getAllUsers(): Array<User> {
+  return DB.getAllUsers();
+}
+
+export function getAllUserPaginates(limit: number, page: number): PaginatesUser {
+  return DB.getAllUserPaginates(limit, page);
+}
+
+export function paginateUsers(limit: number, page: number, arrToPaginate: Array<User>): PaginatesUser {
+  const offset = limit * page;
+  const previousOffset = limit * (page - 1);
+  if (page == 1) {
+    return new PaginatesUser(arrToPaginate.length, limit, page, arrToPaginate.slice(page - 1, limit));
+  } else {
+    return new PaginatesUser(arrToPaginate.length, limit, page, arrToPaginate.slice(previousOffset, offset));
+  }
+}
+
+export function getTableFilterUser(sortByColum: string, sortDirection: string): Array<User> {
+  return DB.getTableFilterUser(sortByColum, sortDirection);
+}
+
+export function getUserById(userId: number): User | undefined {
+  return DB.getUserById(userId);
+}
+
+export function deleteUser(userId: number): void {
+  DB.deleteUser(userId);
 }

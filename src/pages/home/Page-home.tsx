@@ -5,15 +5,16 @@ import CardCarrusel from "../../components/carrusel/Card-carrusel";
 import Home from "../../components/home/Home";
 import ProductCard from "../../components/home/Product-card";
 import { Product } from "../../models/Product";
-import { Toy } from "../../interfaces/products";
 import Timer from "../../components/timer/Timer";
-
-import { getAllProducts, getProductsByCategory } from "../../services/db-service";
+import { getAllProducts, getProductsByCategory, getProductsBySubCategory } from "../../services/db-service";
 import Carrusel, { imgSlides } from "../../components/carrusel/Carrusel";
 import { getImagesBrands } from "../../services/import-brans";
 import CardCarruselImages from "../../components/carrusel/Card-carrusel-images";
 import CardImages from "../../components/card-images/Card-images";
 import BtnUp from "../../components/buttons/Btn-up";
+import { getSubCategoryByText } from "../../services/category-service";
+import banner from "../../assets/banner.svg";
+import HtmlSendEmail from "../../components/html-email-send/Html-send-email";
 
 interface PageHomeProps {}
 
@@ -28,26 +29,28 @@ const PageHome: React.FunctionComponent<PageHomeProps> = () => {
   const [start, setStart] = useState<number>(0);
   const upHome = document.getElementById("upHome");
 
-  console.log(heightHome, "heightHome");
-  console.log(scrollY, "scrollY");
-  console.log(start, "start");
-
   function getFunkos() {
-    let funkos: Array<Product> | undefined = getProductsByCategory({
-      toy: Toy.FUNKO,
-    });
+    const subCatFunko = getSubCategoryByText("funko");
+    let funkos: Array<Product> | undefined = [];
+    if (subCatFunko) {
+      funkos = getProductsBySubCategory(subCatFunko);
+    }
     if (funkos) {
       setFunkos(funkos);
     }
   }
   function getDinos() {
-    let dinos: Array<Product> | undefined = getProductsByCategory({
-      toy: Toy.DINOSAURIO,
-    });
-    if (dinos) {
-      setDinos(dinos);
+    const subCatDino = getSubCategoryByText("dinosaur");
+
+    let dinos: Array<Product> | undefined = [];
+    if (subCatDino) {
+      dinos = getProductsBySubCategory(subCatDino);
+      if (dinos) {
+        setDinos(dinos);
+      }
     }
   }
+
   function getBrands() {
     let array_one_brands: Array<imgSlides> = getImagesBrands();
     let array_two_brands: Array<imgSlides> = getImagesBrands();
@@ -96,6 +99,16 @@ const PageHome: React.FunctionComponent<PageHomeProps> = () => {
   }, [heightHome]);
   return (
     <div id="cnt-page-home">
+      <div className="container-banner">
+        <Carrusel
+          imgSlides={[{ image: banner, text: "image-banner" }]}
+          imgHeight={25}
+          idCarrusel={""}
+          buttonsNone={false}
+          hiddenText={true}
+          borderRadius={2}
+        />
+      </div>
       <Home seeCollection={seeCollection} products={products} />
       <BtnSee
         textRender="Ver colección"
@@ -130,7 +143,7 @@ const PageHome: React.FunctionComponent<PageHomeProps> = () => {
         marginBottom={50}
       />
       <div className="containerTimerSale">
-        <Timer title="Termina en :" />
+        <Timer title="Termina en :" propStart={false} />
         <CardCarrusel
           carouselId="dinos-card-carousel"
           cardsData={dinos}

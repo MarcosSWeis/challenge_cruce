@@ -1,37 +1,35 @@
-
+import { Category } from "../models/Category";
+import { SubCategory } from "../models/Sub-category";
 
 export type Price = {
-    price: number,
-    discount: number
-}
-
+  price: number;
+  discount: number;
+};
 
 export interface IProduct {
-    id: number
-    title: string,
-    price: Price,
-    description: string,
-    category: CategoryProduct,
-    image: any,
-    quotas: QuotaProduct
-
+  id: number;
+  title: string;
+  price: Price;
+  description: string;
+  category: Category;
+  subCategory: SubCategory; //capaz cambiear por array
+  images: Array<string>;
+  quotas: number;
 }
 export enum QuotaProduct {
-    tres = 3,
-    seis = 6,
-    nueve = 9,
-    doce = 12
+  tres = 3,
+  seis = 6,
+  nueve = 9,
+  doce = 12,
 }
+
+//ver porque cambiarlo para hacerlo escalable y no tan confuso en el front
 export interface CategoryProduct {
-    toy?: Toy
-    school?: School
+  toy?: string;
+  school?: string;
 }
 
-
-export enum Toy {
-    FUNKO = 'Funko',
-    DINOSAURIO = 'Dinosaurio'
-}
-export enum School {
-    JANSPORT = 'Jansport'
+export enum Catefory {
+  toy = 1,
+  school,
 }

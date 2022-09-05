@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TbSocNet, TbGeneral } from "../../interfaces/table";
 import BtnSee from "../buttons/Btn-see";
 import TableDescGeneral from "./Table-desc-general";
@@ -9,10 +9,29 @@ import cace from "../../assets/footer/cace.svg";
 import hotsale from "../../assets/footer/hotsale.svg";
 import vtex from "../../assets/footer/vtex.svg";
 import logo from "../../assets/logo.svg";
+import { sendEmail } from "../../services/send-email";
+import Loader from "../loader/Loader";
 
 interface FooterProps {}
-
+interface ErrorSendEmail {
+  error: boolean;
+  text: string;
+}
 const Footer: React.FunctionComponent<FooterProps> = () => {
+  const [email, setEmail] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const [errorEmail, setErrorEmail] = useState<ErrorSendEmail>({ error: false, text: "" });
+
+  function handlerValidationEmail(email: string): boolean {
+    if (!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(email)) {
+      setErrorEmail({ error: true, text: "Email no valido" });
+      return false;
+    } else {
+      setErrorEmail({ error: false, text: "" });
+      return true;
+    }
+  }
   const socialNetWorks: Array<TbSocNet> = [
     {
       nameSocNet: "instagram",
@@ -44,6 +63,7 @@ const Footer: React.FunctionComponent<FooterProps> = () => {
       link: "/",
     },
   ];
+
   return (
     <div className="containerFooter">
       <div className="subContainerFooter">
@@ -53,12 +73,47 @@ const Footer: React.FunctionComponent<FooterProps> = () => {
         </div>
         <div>
           <h3></h3>
-          <form action="" id="fromContact">
-            <div className="input-group mb-3">
-              <input type="text" className="form-control" placeholder="Email" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+          <div id="ctn-contact">
+            <div className="input-group mb-3 d-flex">
+              <input
+                type="email"
+                className="form-control"
+                placeholder="Email"
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                }}
+              />
+              {errorEmail.error && (
+                <h6 className="mt-2 mb-2 text-danger" style={{ height: "38px", marginLeft: "2rem" }}>
+                  {errorEmail.text}
+                </h6>
+              )}
+              {loading && (
+                <div style={{ height: "38px", marginLeft: "2rem" }}>
+                  <Loader />
+                </div>
+              )}
             </div>
-          </form>
-          <BtnSee bgColor="white" textColor="black" textRender="ENVIAR" />
+          </div>
+          <BtnSee
+            bgColor="white"
+            textColor="black"
+            textRender="ENVIAR"
+            padding={3}
+            dispatchAction={async () => {
+              if (handlerValidationEmail(email)) {
+                setLoading(true);
+                try {
+                  const response = await sendEmail(email);
+                  console.log(response);
+                } catch (err) {
+                  console.log(err);
+                }
+
+                setLoading(false);
+              }
+            }}
+          />
         </div>
       </div>
       <div className="containerTableFooter">

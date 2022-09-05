@@ -5,8 +5,8 @@ import ProductCard from "./Product-card";
 interface IContainerCardHomeProps {
   products: Array<Product>;
 }
-
 const ContainerCardHome: React.FunctionComponent<IContainerCardHomeProps> = ({ products }) => {
+  console.log(products);
   return (
     <div className="wrapper">
       {products.map((product: Product) => (

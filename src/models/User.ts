@@ -38,32 +38,35 @@ export class User implements IUser {
     return compareSync(password, hashedPassword);
   }
 
-  // setCreateId(id: number): void {
-  //     this.id = id
-  // }
-  // setName(name: string): void {
-  //     this.name = name
-  // }
-  // setLastName(lastName: string): void {
-  //     this.lastName = lastName
-  // }
-  // setEmail(email: string): void {
-  //     this.email = email
-  // }
-  // //------***   GETTERS   ***------//
-  // getId(): number | undefined {
-  //     return this.id
-  // }
-  // getTitle(): string {
-  //     return this.name
-  // }
-  // getPrice(): string {
-  //     return this.lastName
-  // }
-  // getDescription(): string {
-  //     return this.email
-  // }
-  // getCategory(): string {
-  //     return this.password
-  // }
+  //   setCreateId(id: number): void {
+  //       this.id = id
+  //   }
+  setName(name: string): void {
+    this.name = name;
+  }
+  setLastName(lastName: string): void {
+    this.lastName = lastName;
+  }
+  setEmail(email: string): void {
+    this.email = email;
+  }
+  setRole(roleId: number): void {
+    this.role = roleId;
+  }
+  //------***   GETTERS   ***------//
+  getId(): number | undefined {
+    return this.id;
+  }
+  getTitle(): string {
+    return this.name;
+  }
+  getPrice(): string {
+    return this.lastName;
+  }
+  getDescription(): string {
+    return this.email;
+  }
+  getCategory(): string {
+    return this.password;
+  }
 }

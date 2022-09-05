@@ -2,7 +2,9 @@ import { count } from "console";
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/App-context";
 import { CategoryProduct, QuotaProduct } from "../../interfaces/products";
+import { Category } from "../../models/Category";
 import { Product } from "../../models/Product";
+import { SubCategory } from "../../models/Sub-category";
 import Alert from "../../services/alert-service";
 import { saveDB } from "../../services/created-db";
 import { cartItemSeparator, getTotalPriceCart } from "../../services/user-service";
@@ -17,8 +19,9 @@ export interface countShoppingCart {
   title: string;
   description: string;
   discount: number;
-  image: any;
-  category: CategoryProduct;
+  images: Array<string>;
+  category: Category;
+  subCategory: SubCategory;
   quotas: QuotaProduct;
   priceXUd: number;
 }

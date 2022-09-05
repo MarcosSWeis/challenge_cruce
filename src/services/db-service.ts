@@ -1,26 +1,11 @@
-import axios, { Axios, AxiosResponse } from "axios";
 import { UpdatedUserLogged } from "../interfaces/app-context-props";
-import { CategoryProduct, Toy } from "../interfaces/products";
-import { Paginate } from "../models/Paginate";
+import { Category } from "../models/Category";
+import { PaginateProduct } from "../models/Paginate-product";
 import { Product } from "../models/Product";
+import { SubCategory } from "../models/Sub-category";
 import { User } from "../models/User";
 import Alert from "./alert-service";
 import { DB, saveDB } from "./created-db";
-
-axios.defaults.baseURL = "https://fakestoreapi.com";
-
-//antes usaba una api pero quise que la data sea lo mas fiel al boceto, no se podia base de datos y de debido a que react interactúa
-// con el dom no era posible o viable usar json , ya que no es posible usar módulos como fs , o path de nodejs, entonces opte por una clase db,
-// export async function getPublic<T, U>(path: string, query: T): Promise<U> {
-//     try {
-//         const res = await axios.get(path, {
-//             params: query
-//         })
-//         return res.data
-//     } catch (err: any) {
-//         return err
-//     }
-// }
 
 export const addToCart = (id: number, user: User, updatedUserLogged: UpdatedUserLogged) => {
   const product = DB.getProductById(id);
@@ -28,7 +13,7 @@ export const addToCart = (id: number, user: User, updatedUserLogged: UpdatedUser
     user.addToCart(product);
     //save in the db
     const index: number = DB.getPositionUser(user.email);
-    index !== -1 ? DB.saveUser(index, user) : Alert.error({ title: "Error", message: "Debe registrarse" });
+    index !== -1 ? DB.updatedUser(index, user) : Alert.error({ title: "Error", message: "Debe registrarse" });
     saveDB();
     //once saved update the global state
     updatedUserLogged(user);
@@ -39,7 +24,7 @@ export const getAllProducts = (): Array<Product> => {
   return DB.getAllProducts();
 };
 
-export const getProductsByCategory = (category: CategoryProduct): Array<Product> | undefined => {
+export const getProductsByCategory = (category: Category): Array<Product> | undefined => {
   return DB.getProductsByCategory(category);
 };
 
@@ -51,6 +36,18 @@ export const getUserByEmail = (email: string): User | undefined => {
   return DB.getUserByEmail(email);
 };
 
-export const getAllProductsPaginates = (limit: number, page: number, arrToPaginate: Product[]): Paginate => {
+export const getAllProductsPaginates = (limit: number, page: number, arrToPaginate: Product[]): PaginateProduct => {
   return DB.getAllProductsPaginates(limit, page, arrToPaginate);
 };
+
+export const getProductById = (id: number): Product | undefined => {
+  return DB.getProductById(id);
+};
+
+export function getProductsBySubCategory(subCategory: SubCategory): Array<Product> | undefined {
+  return DB.getProductsBySubCategory(subCategory);
+}
+
+export function addProduct(product: Product): void {
+  DB.addProduct(product);
+}

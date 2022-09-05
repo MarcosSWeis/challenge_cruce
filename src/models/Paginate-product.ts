@@ -1,7 +1,7 @@
 import { PaginateProducts } from "../interfaces/return-paginate-produdts";
 import { Product } from "./Product";
 
-export class Paginate implements PaginateProducts {
+export class PaginateProduct implements PaginateProducts {
   total_products: number;
   total_pages: number;
   current_page: number;

@@ -32,22 +32,15 @@ const CardShoppingCart: React.FunctionComponent<CardShoppingCartProps> = ({ prod
     <div className="product">
       <div className="row">
         <div className="col-md-3">
-          <img className="img-fluid mx-auto d-block image" src={product.image} />
+          <img className="img-fluid mx-auto d-block image" src={product.images[0]} />
         </div>
         <div className="col-md-8">
           <div className="info">
             <div className="row">
               <div className="col-md-5 product-name">
                 <div className="product-name">
-                  <Link
-                    to={`/juguetes/${
-                      product.category.toy
-                        ? product.category.toy.toLocaleLowerCase()
-                        : product.category.school && product.category.school.toLocaleLowerCase()
-                    }/1`}
-                    className="category-link"
-                  >
-                    {product.category.toy ? product.category.toy : product.category.school}
+                  <Link to={`/juguetes/${product.subCategory.subCategoryIng}/1`} className="category-link">
+                    {product.subCategory.subCategory}
                   </Link>
                   <div className="product-info">
                     <div>

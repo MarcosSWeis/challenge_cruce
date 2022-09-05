@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import ContainerCardHome from "../../components/home/Container-card-home";
 import Paginator from "../../components/Paginator";
-import { QuotaProduct, Toy } from "../../interfaces/products";
-import { Paginate } from "../../models/Paginate";
+import { PaginateProduct } from "../../models/Paginate-product";
 import { Product } from "../../models/Product";
-import { getAllProductsPaginates, getProductsByCategory } from "../../services/db-service";
+import { getSubCategoryByText } from "../../services/category-service";
+import { getAllProductsPaginates, getProductsByCategory, getProductsBySubCategory } from "../../services/db-service";
 import { filterByPrice, getFilterByQuota, getFilterDiscount } from "../../services/product-service";
 
 interface ResultFilterProps {}
 
 const ResultFilter: React.FunctionComponent<ResultFilterProps> = () => {
-  const [response, setResponse] = useState<Paginate>();
+  const [response, setResponse] = useState<PaginateProduct>();
   const [searchParams] = useSearchParams();
   const page = Number(searchParams.get("page"));
   const min = Number(searchParams.get("min"));
@@ -19,29 +19,18 @@ const ResultFilter: React.FunctionComponent<ResultFilterProps> = () => {
   const quota = Number(searchParams.get("quota"));
   const discount = Number(searchParams.get("discount"));
   const toy = searchParams.get("toy");
-  let toyType: Toy;
-  switch (toy) {
-    case Toy.FUNKO.toLowerCase():
-      {
-        toyType = Toy.FUNKO;
-      }
-      break;
-    case Toy.DINOSAURIO.toLowerCase():
-      {
-        toyType = Toy.DINOSAURIO;
-      }
-      break;
-  }
   const limit = 6;
 
-  console.log(page, "page");
-  console.log(min, "min");
-  console.log(max, "max");
-  console.log(quota, "quota");
-  console.log(discount, "discount");
-
   function filter() {
-    let filteredProducts: Array<Product> = filterByPrice(min, max, getProductsByCategory({ toy: toyType }));
+    let filteredProducts: Array<Product> = [];
+    if (toy) {
+      console.log(toy, "toytyyttyt");
+      const subCat = getSubCategoryByText(toy);
+      if (subCat) {
+        console.log(subCat);
+        filteredProducts = filterByPrice(min, max, getProductsBySubCategory(subCat));
+      }
+    }
 
     if (quota !== 0) {
       filteredProducts = getFilterByQuota(quota, filteredProducts);

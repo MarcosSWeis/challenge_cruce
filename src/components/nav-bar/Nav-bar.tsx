@@ -65,7 +65,7 @@ const NavBar: React.FunctionComponent<NavBarProps> = () => {
           </button>
 
           <Link to={"/"} className="container-logo-nav-bar">
-            <img src={logo} alt="Logo ong" height={"40px"} className="m-auto none" />
+            <img src={logo} alt="Logo ong" height={"40px"} className="m-auto " />
           </Link>
           <div className="containerCartNavBar">
             <img src={cart} alt="Logo ong" height={"40px"} style={{ transform: "scale(0.6)" }} onClick={handlerCart} />
@@ -79,6 +79,13 @@ const NavBar: React.FunctionComponent<NavBarProps> = () => {
                 ))}
               </ul>
             </div>
+            {user && user.role === 1 ? (
+              <Link to={"/backoffice"} className="cnt-icon-settings">
+                <div className="text-center  mb-3 rotate">
+                  <i className="bi bi-gear-fill h3"></i>
+                </div>
+              </Link>
+            ) : null}
             <div className="cont-search-user-nav-bar">
               <div className="active-serarch-top">
                 <Search />
@@ -86,7 +93,8 @@ const NavBar: React.FunctionComponent<NavBarProps> = () => {
               <div className="container-logo-user">
                 {user ? (
                   <button
-                    className="btn btn-danger mx-3  rounded-pill"
+                    id="btn-log-out"
+                    className="btn btn-danger mx-3  rounded-pill "
                     type="submit"
                     onClick={() => {
                       logout();
